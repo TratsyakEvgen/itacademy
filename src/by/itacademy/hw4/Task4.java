@@ -6,19 +6,18 @@ public class Task4 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите длину массива ");
-        int index;
-        index = scanner.nextInt();
-        if(index > 0) {
-            int[] array = new int[index];
+        int size = scanner.nextInt();
+        if(size > 0) {
+            int[] array = new int[size];
             System.out.println("Заполните массив");
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < size; i++) {
                 System.out.print("array[" + i + "] = ");
                 array[i] = scanner.nextInt();
             }
             int max = array[0];
             int min = array[0];
             int indexMax = 0, indexMin = 0;
-            for (int i = 0; i < index; i++){
+            for (int i = 0; i < size; i++){
                 if (max <= array[i]){
                     max = array[i];
                     indexMax = i;

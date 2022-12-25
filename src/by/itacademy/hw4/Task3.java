@@ -7,7 +7,7 @@ public class Task3 {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите чило a = ");
         int number = scanner.nextInt();
-        if (number >=0) {
+        if (number > 0) {
             long factorial = 1L;
             for (int i = number; i > 1; i--) {
                 factorial *= i;

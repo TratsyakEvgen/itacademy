@@ -21,11 +21,10 @@ public class Task9 {
     }
     public static int calculate(int numbers){
         int sum = 0;
-        sum += numbers % 10;
-        numbers /= 10;
-        sum += numbers % 10;
-        numbers /= 10;
-        sum += numbers;
+        for (int i = 0; i < 3; i++) {
+            sum += numbers % 10;
+            numbers /= 10;
+        }
         return sum;
     }
 }

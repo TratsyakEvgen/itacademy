@@ -15,12 +15,7 @@ public class Task10 {
         if(indexRows > 0 && indexColumns >0) {
             System.out.println("Заполним массив случайными числами...");
             int[][] array = new int[indexRows][indexColumns];
-            Random random = new Random();
-            for (int i = 0; i < array.length; i++) {
-                for (int j = 0; j < array[0].length; j++) {
-                    array[i][j] = random.nextInt(100);
-                }
-            }
+            array = fillArray(array);
             System.out.println("Выводим на печать полученный массив:");
             printArray(array);
             long maxSumline; //на случай переполнения integer;
@@ -50,6 +45,16 @@ public class Task10 {
                 }
                 System.out.println();
             }
+        }
+
+        public static int[][] fillArray(int[][] array){
+            Random random = new Random();
+            for (int i = 0; i < array.length; i++) {
+                for (int j = 0; j < array[0].length; j++) {
+                    array[i][j] = random.nextInt(100);
+                }
+            }
+        return array;
         }
 
 }
