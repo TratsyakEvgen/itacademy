@@ -1,19 +1,28 @@
 package by.itacademy.hw7.Task2;
 
-public abstract class Degree{
-
+public abstract class Degree {
     private double value;
+    private final double minValue;
 
-    protected abstract double convertToCelsius(double value);
+    public Degree(double minValue) {
+        this.minValue = minValue;
+    }
 
-    protected abstract double convertToKelvin(double value);
+    public double getMinValue() {
+        return minValue;
+    }
 
-    protected abstract double convertToFahrenheit(double value);
-
-    protected void setValue(double value){
+    public void setValue(double value) {
         this.value = value;
-    };
-    protected double getValue(){
+    }
+
+    public double getValue() {
         return this.value;
-    };
+    }
+
+    protected abstract double convertToCelsius();
+
+    protected abstract double convertToKelvin();
+
+    protected abstract double convertToFahrenheit();
 }

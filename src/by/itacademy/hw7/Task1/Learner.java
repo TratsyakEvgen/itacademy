@@ -1,70 +1,34 @@
 package by.itacademy.hw7.Task1;
 
-import java.util.Scanner;
 
-public class Learner {
-    private String firstName;
-    private String secondName;
-    private int courseNumber;
-    private String groupName;
-    private double gradePointAverage;
+public abstract class Learner {
+    private final String firstName;
+    private final String secondName;
+    private final int courseNumber;
+    private final String groupName;
+    private final double gradePointAverage;
 
-
-    public int calculateOfGrants(){
-        return 0;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите имя: ");
-        String string;
-        boolean isName= false;
-        while (!isName) {
-            string = scanner.nextLine();
-            isName = isName(string);
-            break;
-            System.out.print("Введите имя: ");
-        }
+    public Learner(String firstName, String secondName, int courseNumber, String groupName, double gradePointAverage) {
         this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
         this.secondName = secondName;
-    }
-
-    public int getCourseNumber() {
-        return courseNumber;
-    }
-
-    public void setCourseNumber(int courseNumber) {
         this.courseNumber = courseNumber;
-    }
-
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
         this.groupName = groupName;
+        this.gradePointAverage = gradePointAverage;
     }
 
     public double getGradePointAverage() {
         return gradePointAverage;
     }
 
-    public void setGradePointAverage(double gradePointAverage) {
-        this.gradePointAverage = gradePointAverage;
-    }
+    protected abstract int calculateOfGrants();
 
-    protected boolean isName(String string){
-       return string.matches("[А-Я].[а-я]+|[A-Z].[a-z]+");
+    protected void getFullInfo(Learner learner) {
+        System.out.println("Имя: " + learner.firstName);
+        System.out.println("Фамилия: " + learner.secondName);
+        System.out.println("Курс: " + learner.courseNumber);
+        System.out.println("Группа: " + learner.groupName);
+        System.out.println("Средняя оценка:  " + learner.gradePointAverage);
+        System.out.println("Стипендия:  " + learner.calculateOfGrants());
+        System.out.println();
     }
 }

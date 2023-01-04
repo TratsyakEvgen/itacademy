@@ -5,68 +5,80 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         ArrayList<Fruit> basket = new ArrayList<>();
 
 
-        setInfoFruit("яблок", basket);
-        setInfoFruit("груш", basket);
-        setInfoFruit("абрикосов", basket);
+        addFruitsToBasket(new Apple(), basket);
+        addFruitsToBasket(new Pear(), basket);
+        addFruitsToBasket(new Apricot(), basket);
 
-        double sumPrice = 0;
-        double sumPriceApple = 0;
-        double sumPricePear = 0;
-        double sumPriceApricot = 0;
-        for (Fruit object : basket) {
-            sumPrice += object.calculatePrice();
-            switch (object.getClass().getSimpleName()) {
-                case "Apple":
-                    sumPriceApple = object.calculatePrice();
-                    break;
-                case "Pear":
-                    sumPricePear = object.calculatePrice();
-                    break;
-                case "Apricot":
-                    sumPriceApricot = object.calculatePrice();
-                    break;
-            }
-        }
-        System.out.println("Стоимость корзины фруктов: " + sumPrice);
-        System.out.println("Стоимость яблок в корзине: " + sumPriceApple);
-        System.out.println("Стоимость груш в корзине: " + sumPricePear);
-        System.out.println("Стоимость абрикосов в корзине: " + sumPriceApricot);
+
+        System.out.println("Стоимость корзины фруктов: " + getSumPriceInBasket(basket));
+        System.out.println("Стоимость яблок в корзине: " + getSumPriceInBasket(Apple.class.getSimpleName(),basket));
+        System.out.println("Стоимость груш в корзине: " + getSumPriceInBasket(Pear.class.getSimpleName(),basket));
+        System.out.println("Стоимость абрикосов в корзине: " + getSumPriceInBasket(Apricot.class.getSimpleName(),basket));
     }
 
-    public static void setInfoFruit(String nameFruit, ArrayList<Fruit> basket) {
-        double price = setNumber("Укажите цену " + nameFruit + ": ");
-        int number = (int) setNumber("Укажите количество " + nameFruit + " в корзине: ");
-        addFruit(nameFruit, basket, price, number);
-    }
 
-    public static void addFruit(String nameFruit, ArrayList<Fruit> basket, double price, int number) {
-        Fruit fruit;
+    public static void addFruitsToBasket(Fruit someFruit, ArrayList<Fruit> basket) {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Укажите цену " + someFruit.getEnumeratedName() + ": ");
+        double price = entryPositiveNumber(scanner.nextDouble());
+        System.out.print("Укажите количество " + someFruit.getEnumeratedName() + " в корзине: ");
+        int number = entryPositiveNumber(scanner.nextInt());
         for (int i = 0; i < number; i++) {
-            switch (nameFruit) {
-                case "яблок":
-                    fruit = new Apple();
-                    break;
-                case "груш":
-                    fruit = new Pear();
-                    break;
-                default:
-                    fruit = new Apricot();
-                    break;
+            System.out.print("Укажите вес " + (i + 1) + "-го фрукта: ");
+            double weight = scanner.nextDouble();
+            Fruit fruit;
+
+            if (someFruit instanceof Apple) {
+                fruit = new Apple(weight, price);
+            } else if (someFruit instanceof Pear) {
+                fruit = new Pear(weight, price);
+            } else {
+                fruit = new Apricot(weight, price);
             }
-            double weight = setNumber("Укажите вес " + (i + 1) + "-го фрукта: ");
-            fruit.setWeight(weight);
-            fruit.setPrice(price);
+
             basket.add(fruit);
         }
     }
 
-    public static double setNumber(String textMessage) {
-        System.out.print(textMessage);
-        Scanner scanner = new Scanner(System.in);
-        return Fruit.verify(scanner.nextInt());
+    public static double getSumPriceInBasket(String className,ArrayList<Fruit> basket){
+        double sumPrice = 0;
+        for (Fruit fruit : basket) {
+            if (fruit.getClass().getSimpleName().equals(className)) {
+                sumPrice += fruit.calculatePrice();
+            }
+        }
+        return sumPrice;
+    }
+
+    public static double getSumPriceInBasket(ArrayList<Fruit> basket){
+        double sumPrice = 0;
+        for (Fruit fruit : basket) {
+                sumPrice += fruit.calculatePrice();
+        }
+        return sumPrice;
+    }
+
+    public static double entryPositiveNumber(double number) {
+        while (number < 0) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Число должно быть больше 0! Повторите ввод: ");
+            number = scanner.nextDouble();
+        }
+        return number;
+    }
+
+    public static int entryPositiveNumber(int number) {
+        while (number < 0) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Число должно быть больше 0! Повторите ввод: ");
+            number = scanner.nextInt();
+        }
+        return number;
     }
 
 }

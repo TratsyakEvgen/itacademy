@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Learner> learners = new ArrayList<>();
+
         Scanner scanner = new Scanner(System.in);
         boolean isEnd = true;
         while (isEnd) {
@@ -13,53 +14,56 @@ public class Main {
             System.out.println("Ввести еще одного ученика?  (true/false)");
             isEnd = scanner.nextBoolean();
         }
-        for (Learner object: learners) {
-            getFullInfo(object);
+
+        for (Learner object : learners) {
+            object.getFullInfo(object);
         }
     }
 
 
     public static Learner createLearner() {
-        System.out.println("У ученика есть научная работа? (true/false)");
-        Scanner scanner = new Scanner(System.in);
-        boolean scientificWork = scanner.nextBoolean();
+        String firstName = entryString("Введите имя: ", "[А-Я]{1}[а-я]+|[A-Z]{1}[a-z]+");
+        String secondName = entryString("Введите фамилию: ", "[А-Я]{1}[а-я]+|[A-Z]{1}[a-z]+");
+        int courseNumber = (int) entryNumber("Номер курса (1-6): ", 1, 6);
+        String groupName = entryString("Введите название группы (мин 3 символа): ", "\\w{3,}");
+        double gradePointAverage = entryNumber("Введите среднюю оценку (0-10): ", 0, 10);
+
         Learner learner;
-        if (scientificWork) {
-            GraduateStudent graduateStudent = new GraduateStudent();
-            graduateStudent.setScientificWork(true);
-            learner = graduateStudent;
+        System.out.print("У ученика есть научная работа? (true/false) :");
+        Scanner scanner = new Scanner(System.in);
+        if (scanner.nextBoolean()) {
+            String scientificWork = entryString("Введиде название научной работы: ", "\\.{3,}");
+            learner = new GraduateStudent(firstName, secondName, courseNumber, groupName, gradePointAverage, scientificWork);
         } else {
-            learner = new Student();
+            learner = new Student(firstName, secondName, courseNumber, groupName, gradePointAverage);
         }
-        setInfoLeaner(learner);
         return learner;
     }
 
-    public static void setInfoLeaner(Learner learner) {
+
+    public static String entryString(String textMessage, String regex) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите имя: ");
-        learner.setFirstName(scanner.nextLine());
-        System.out.print("Введите фамилию: ");
-        learner.setSecondName(scanner.nextLine());
-        System.out.print("Номер курса (1-6): ");
-        learner.setCourseNumber(scanner.nextInt());
-        scanner.nextLine();
-        System.out.print("Введите название группы: ");
-        learner.setGroupName(scanner.nextLine());
-        System.out.print("Введите среднюю оценку: ");
-        learner.setGradePointAverage(scanner.nextDouble());
-        scanner.nextLine();
+        System.out.print(textMessage);
+        String string = scanner.nextLine();
+        while (!string.matches(regex)) {
+            System.out.print("Неверный формат повторите ввод: ");
+            string = scanner.nextLine();
+        }
+        return string;
     }
 
-    public static void getFullInfo(Learner learner){
-        System.out.println("Имя: "+learner.getFirstName());
-        System.out.println("Фамилия: "+learner.getSecondName());
-        System.out.println("Курс: "+learner.getCourseNumber());
-        System.out.println("Группа: "+learner.getGroupName());
-        System.out.println("Средняя оценка:  "+learner.getGradePointAverage());
-        System.out.println("Стипендия:  "+learner.calculateOfGrants());
-        System.out.println();
-    }
 
+    public static double entryNumber(String textMessage, double minValue, double maxValue) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(textMessage);
+        double number = scanner.nextDouble();
+        scanner.nextLine();
+        while (number < minValue || number > maxValue) {
+            System.out.print("Неверный формат повторите ввод: ");
+            number = scanner.nextDouble();
+            scanner.nextLine();
+        }
+        return number;
+    }
 
 }
