@@ -30,7 +30,7 @@ public class Main {
         int number = entryPositiveNumber(scanner.nextInt());
         for (int i = 0; i < number; i++) {
             System.out.print("Укажите вес " + (i + 1) + "-го фрукта: ");
-            double weight = scanner.nextDouble();
+            double weight = entryPositiveNumber(scanner.nextDouble());
             Fruit fruit;
 
             if (someFruit instanceof Apple) {
