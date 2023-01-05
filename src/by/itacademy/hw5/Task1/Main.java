@@ -15,27 +15,41 @@ public class Main {
         person = createPerson();
         Person secondPerson = new Person(person.getFullName(), person.getAge());
 
-
-        System.out.println(firstPerson.talk(firstPerson.getFullName()) + " говорит");
-        System.out.println(firstPerson.move(firstPerson.getFullName()) + " говорит");
-        System.out.println(secondPerson.talk(secondPerson.getFullName()) + " говорит");
-        System.out.println(secondPerson.move(secondPerson.getFullName()) + " говорит");
+        firstPerson.talk();
+        firstPerson.move();
+        secondPerson.talk();
+        secondPerson.move();
 
     }
-    private static Person createPerson(){
-        Scanner scanner = new Scanner(System.in);
-        String fullName;
-        int age;
 
-        System.out.print("Введите имя: ");
-        fullName = scanner.nextLine();
-        System.out.print("Введите возраст: ");
-        age = scanner.nextInt();
-        scanner.nextLine();
+    private static Person createPerson() {
+        String fullName = enterName("Введите имя: ");
+        int age = enterAge("Введите возраст: ");
         Person person = new Person();
         person.setFullName(fullName);
         person.setAge(age);
-
         return person;
+    }
+
+    public static int enterAge(String textMessage) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(textMessage);
+        int age = scanner.nextInt();
+        while (age < 0) {
+            System.out.print("Возраст не может быть меньше 0! Повторите ввод: ");
+            age = scanner.nextInt();
+        }
+        return age;
+    }
+
+    public static String enterName(String textMessage) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(textMessage);
+        String fullName = scanner.nextLine();
+        while (fullName.length() == 0) {
+            System.out.print("Имя не может быть пустым! Повторите ввод: ");
+            fullName = scanner.nextLine();
+        }
+        return fullName;
     }
 }

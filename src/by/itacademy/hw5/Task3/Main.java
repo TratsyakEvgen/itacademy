@@ -22,8 +22,7 @@ public class Main {
         }
 
         System.out.println("Введите число на которое умножим первую матрицу:");
-        int number;
-        number = scanner.nextInt();
+        int number = scanner.nextInt();
         resultMatrix = Matrix.multiplyMatrix(firstMatrix, number);
         Matrix.printMatrix(resultMatrix);
 
@@ -36,14 +35,8 @@ public class Main {
     }
 
     private static Matrix creatMatrix() {
-        int numberOfRow;
-        int numberOfColumns;
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите количество строк: ");
-        numberOfRow = scanner.nextInt();
-        System.out.print("Введите количество столбцов: ");
-        numberOfColumns = scanner.nextInt();
+        int numberOfRow = enterNumber("Введите количество строк: ");
+        int numberOfColumns = enterNumber("Введите количество столбцов: ");
 
         int[][] array = new int[numberOfRow][numberOfColumns];
 
@@ -55,13 +48,20 @@ public class Main {
             }
         }
 
-        Matrix matrix = new Matrix();
-        matrix.setNumberOfRow(numberOfRow);
-        matrix.setNumberOfColumns(numberOfColumns);
-        matrix.setMatrix(array);
-
-        return matrix;
+        return new Matrix(numberOfRow,numberOfColumns,array);
     }
+
+    public static int enterNumber(String textMessage) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(textMessage);
+        int number = scanner.nextInt();
+        while (number < 0) {
+            System.out.print("Число не может быть меньше 0! Повторите ввод: ");
+            number = scanner.nextInt();
+        }
+        return number;
+    }
+
 
 }
 

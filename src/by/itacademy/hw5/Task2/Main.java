@@ -5,11 +5,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        long number;
-        String name;
-
 
         System.out.println("Создаем телефоны: ");
+
         Phone phone = creatPhone();
 
         Phone firstPhone = new Phone();
@@ -26,13 +24,13 @@ public class Main {
 
 
         System.out.print("Укажите имя контакта входящего вызова: ");
-        Phone.receiveCall(enterName());
+        Phone.receiveCall(enterString());
 
 
         System.out.print("Укажите имя контакта входящего вызова: ");
-        name = enterName();
+        String name = enterString();
         System.out.print("Укажите номер входящего вызова: ");
-        number = enterNumber();
+        long number = enterNumber();
         Phone.receiveCall(name, number);
 
 
@@ -46,20 +44,13 @@ public class Main {
 
 
     private static Phone creatPhone() {
-        Scanner scanner = new Scanner(System.in);
-        long number;
-        String model;
-        double weight;
-
 
         System.out.print("Номер (12 цифр): ");
-        number = scanner.nextLong();
-        scanner.nextLine();
+        long number = enterNumber();
         System.out.print("Модель: ");
-        model = scanner.nextLine();
+        String model = enterString();
         System.out.print("Вес: ");
-        weight = scanner.nextDouble();
-        scanner.nextLine();
+        double weight = enterWeight();
 
         Phone phone = new Phone();
         phone.setNumber(number);
@@ -71,34 +62,40 @@ public class Main {
 
 
     private static long enterNumber() {
-        long number;
         Scanner scanner = new Scanner(System.in);
-
-        number = scanner.nextLong();
-        scanner.nextLine();
-
+        long number = scanner.nextLong();
         while (number <= 100_00_000_00_00L || number >= 999_99_999_99_99L) {
             System.out.print("Неверный номер! Повтороите ввод: ");
             number = scanner.nextLong();
-            scanner.nextLine();
         }
+        scanner.nextLine();
         return number;
     }
 
-    private static String enterName() {
-        String name;
+    private static String enterString() {
         Scanner scanner = new Scanner(System.in);
-
-        name = scanner.nextLine();
-        while (name.length() == 0) {
-            System.out.print("Имя не может быть пустым! Повтороите ввод: ");
-            name = scanner.nextLine();
+        String string = scanner.nextLine();
+        while (string.length() == 0) {
+            System.out.print("Строка не может быть пустой! Повтороите ввод: ");
+            string = scanner.nextLine();
         }
-        return name;
+        return string;
     }
 
+    private static double enterWeight() {
+        Scanner scanner = new Scanner(System.in);
+        double weight = scanner.nextDouble();
+        while (weight <= 0) {
+            System.out.print("Вес должен быть больше 0! Повтороите ввод: ");
+            weight = scanner.nextDouble();
+            scanner.nextLine();
+        }
+        return weight;
+    }
+
+
     private static long[] enterNumbersOfMessage() {
-        int numberOfMessage = 0;
+        int numberOfMessage;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Укажите количество номеров для рассылки сообщений: ");
 
