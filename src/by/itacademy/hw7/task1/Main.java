@@ -1,4 +1,4 @@
-package by.itacademy.hw7.Task1;
+package by.itacademy.hw7.task1;
 
 import java.util.ArrayList;
 import java.util.Scanner;

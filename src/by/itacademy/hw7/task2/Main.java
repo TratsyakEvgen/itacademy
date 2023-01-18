@@ -1,4 +1,4 @@
-package by.itacademy.hw7.Task2;
+package by.itacademy.hw7.task2;
 
 import java.util.Scanner;
 
@@ -7,20 +7,20 @@ public class Main {
         System.out.print("Введите температуру по Цельсиях: ");
         Celsius celsius = new Celsius();
         entryValue(celsius);
-        ConvertAndPrint(celsius);
+        convertAndPrint(celsius);
 
         System.out.print("Введите температуру по Кельвинах: ");
         Kelvin kelvin = new Kelvin();
         entryValue(kelvin);
-        ConvertAndPrint(kelvin);
+        convertAndPrint(kelvin);
 
         System.out.print("Введите температуру по Фарингйту: ");
         Fahrenheit fahrenheit = new Fahrenheit();
         entryValue(fahrenheit);
-        ConvertAndPrint(fahrenheit);
+        convertAndPrint(fahrenheit);
     }
 
-    public static void ConvertAndPrint(Degree degree) {
+    public static void convertAndPrint(Degree degree) {
         System.out.println("Температура по Цельсию: " + degree.convertToCelsius());
         System.out.println("Температура по Кельвину: " + degree.convertToKelvin());
         System.out.println("Температура по Фаренгейту: " + degree.convertToFahrenheit());

@@ -1,25 +1,17 @@
-package by.itacademy.hw7.Task4;
+package by.itacademy.hw7.task4;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class Bouquet {
+    ArrayList<Flower> bouquet = new ArrayList<>();
 
+    public Bouquet() {
+    }
 
-        ArrayList<Flower> bouquet = new ArrayList<>();
-
-        System.out.println("Добавим розы в букет");
-        addFlowersToBouquet("Rose", bouquet);
-        System.out.println("Добавим тюльпаны в букет");
-        addFlowersToBouquet("Tulip", bouquet);
-        System.out.println("Добавим кактусы в букет");
-        addFlowersToBouquet("Cactus", bouquet);
-
-
+    public String getColorsAndDeadLine() {
         if (!bouquet.isEmpty()) {
-            System.out.print("Цвета используемые в букете: ");
-
+            StringBuilder colors = new StringBuilder();
             int max = 0;
             int days;
 
@@ -35,20 +27,18 @@ public class Main {
                 }
 
                 if (count == 1) {
-                    System.out.print(color + " ");
+                    colors.append(color).append(" ");
                 }
                 if (max < days) {
                     max = days;
                 }
             }
-
-            System.out.printf("\nБукет полностью завянет на %d день", max);
+            return String.format("Цвета используемые в букете: %s \nБукет полностью завянет на %d день",colors, max);
         }
-
+        return "В букете нет цветов";
     }
 
-
-    public static void addFlowersToBouquet(String flower, ArrayList<Flower> bouquet) {
+    public void addFlowersToBouquet(String flower) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -72,7 +62,7 @@ public class Main {
     }
 
 
-    public static int entryPositiveNumber(String textMessage) {
+    private int entryPositiveNumber(String textMessage) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(textMessage);
         int number = scanner.nextInt();

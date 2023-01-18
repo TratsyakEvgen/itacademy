@@ -1,27 +1,15 @@
-package by.itacademy.hw7.Task3;
+package by.itacademy.hw7.task3;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class Basket {
+    private final ArrayList<Fruit> basket = new ArrayList<>();
 
-        ArrayList<Fruit> basket = new ArrayList<>();
-
-
-        addFruitsToBasket(new Apple(), basket);
-        addFruitsToBasket(new Pear(), basket);
-        addFruitsToBasket(new Apricot(), basket);
-
-
-        System.out.println("Стоимость корзины фруктов: " + getSumPriceInBasket(basket));
-        System.out.println("Стоимость яблок в корзине: " + getSumPriceInBasket(Apple.class.getSimpleName(),basket));
-        System.out.println("Стоимость груш в корзине: " + getSumPriceInBasket(Pear.class.getSimpleName(),basket));
-        System.out.println("Стоимость абрикосов в корзине: " + getSumPriceInBasket(Apricot.class.getSimpleName(),basket));
+    public Basket() {
     }
 
-
-    public static void addFruitsToBasket(Fruit someFruit, ArrayList<Fruit> basket) {
+    public void addFruitsToBasket(Fruit someFruit) {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Укажите цену " + someFruit.getEnumeratedName() + ": ");
@@ -45,7 +33,7 @@ public class Main {
         }
     }
 
-    public static double getSumPriceInBasket(String className,ArrayList<Fruit> basket){
+    public double getSumPriceInBasket(String className) {
         double sumPrice = 0;
         for (Fruit fruit : basket) {
             if (fruit.getClass().getSimpleName().equals(className)) {
@@ -55,15 +43,15 @@ public class Main {
         return sumPrice;
     }
 
-    public static double getSumPriceInBasket(ArrayList<Fruit> basket){
+    public double getSumPriceInBasket() {
         double sumPrice = 0;
         for (Fruit fruit : basket) {
-                sumPrice += fruit.calculatePrice();
+            sumPrice += fruit.calculatePrice();
         }
         return sumPrice;
     }
 
-    public static double entryPositiveNumber(double number) {
+    private double entryPositiveNumber(double number) {
         while (number < 0) {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Число должно быть больше 0! Повторите ввод: ");
@@ -72,7 +60,7 @@ public class Main {
         return number;
     }
 
-    public static int entryPositiveNumber(int number) {
+    private int entryPositiveNumber(int number) {
         while (number < 0) {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Число должно быть больше 0! Повторите ввод: ");
@@ -80,5 +68,4 @@ public class Main {
         }
         return number;
     }
-
 }
