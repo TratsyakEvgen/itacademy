@@ -5,28 +5,22 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        Set<Number> firstSet = new HashSet<>();
-        Number firstNumber = 1;
-        Number secondNumber = 2;
-        Number thirdNumber = 3;
+        Set<Integer> firstSet = new HashSet<>();
 
-        firstSet.add(firstNumber);
-        firstSet.add(secondNumber);
-        firstSet.add(thirdNumber);
+        firstSet.add(1);
+        firstSet.add(2);
+        firstSet.add(3);
 
         System.out.println("Первый набор");
         printSet(firstSet);
 
         Set<Number> secondSet = new HashSet<>();
-        firstNumber = 4;
-        secondNumber = 2;
-        thirdNumber = 5;
 
 
         System.out.println("Второй набор");
-        secondSet.add(firstNumber);
-        secondSet.add(secondNumber);
-        secondSet.add(thirdNumber);
+        secondSet.add(4);
+        secondSet.add(2);
+        secondSet.add(5);
 
         printSet(secondSet);
 
