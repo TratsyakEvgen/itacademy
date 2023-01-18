@@ -1,6 +1,6 @@
-package by.itacademy.hw8.Task3.Product.Clothes;
+package by.itacademy.hw8.task3.Product.Clothes;
 
-import by.itacademy.hw8.Task3.Product.Product;
+import by.itacademy.hw8.task3.Product.Product;
 
 public class Clothes extends Product {
     private final String gender;

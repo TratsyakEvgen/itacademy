@@ -1,9 +1,10 @@
-package by.itacademy.hw8.Task3.Product.Clothes;
+package by.itacademy.hw8.task3.Product.Shoes;
 
-public class Shirts extends Clothes{
+
+public class Slippers extends Shoes {
     private final String type;
 
-    public Shirts(int barcode, double price, String producer, String model, String gender, SizeOfClothes size, String type) {
+    public Slippers(int barcode, double price, String producer, String model, String gender, SizeOfShoes size, String type) {
         super(barcode, price, producer, model, gender, size);
         this.type = type;
     }
@@ -12,6 +13,7 @@ public class Shirts extends Clothes{
     public String toString() {
         return super.toString() + String.format("Тип: %s\n", type);
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -22,13 +24,14 @@ public class Shirts extends Clothes{
             return false;
         }
 
-        if (!(obj instanceof Shirts)) {
+        if (!(obj instanceof Slippers)) {
             return false;
         }
 
-        Shirts shirts = (Shirts) obj;
+        Slippers slippers = (Slippers) obj;
 
         return super.equals(obj) ||
-                this.type != null && this.type.equals(shirts.type);
+                this.type != null && this.type.equals(slippers.type);
     }
+
 }

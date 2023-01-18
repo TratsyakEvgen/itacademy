@@ -1,4 +1,4 @@
-package by.itacademy.hw8.Task2;
+package by.itacademy.hw8.task2;
 
 public class User {
     private final String login;

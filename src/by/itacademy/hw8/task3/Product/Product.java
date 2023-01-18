@@ -1,4 +1,4 @@
-package by.itacademy.hw8.Task3.Product;
+package by.itacademy.hw8.task3.Product;
 
 public class Product {
     private final int barcode;

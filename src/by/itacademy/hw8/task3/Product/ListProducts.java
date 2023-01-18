@@ -1,4 +1,4 @@
-package by.itacademy.hw8.Task3.Product;
+package by.itacademy.hw8.task3.Product;
 
 public enum ListProducts {
     PRODUCT("Все товары", true),
@@ -23,7 +23,7 @@ public enum ListProducts {
         ListProducts listProducts = null;
         ListProducts[] array = ListProducts.values();
         for (ListProducts obj : array) {
-            if (obj.title.equals(string)) {
+            if (obj.title.equalsIgnoreCase(string)) {
                 listProducts = ListProducts.valueOf(String.valueOf(obj));
             }
         }
@@ -34,7 +34,7 @@ public enum ListProducts {
         ListProducts[] array = ListProducts.values();
         for (ListProducts obj : array) {
             if (obj.isAbstract == bool) {
-                System.out.print(obj.title + ", ");
+                System.out.print(obj.title + " ");
             }
         }
     }

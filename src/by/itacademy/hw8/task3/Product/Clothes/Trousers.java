@@ -1,10 +1,9 @@
-package by.itacademy.hw8.Task3.Product.Shoes;
+package by.itacademy.hw8.task3.Product.Clothes;
 
-
-public class Boots extends Shoes {
+public class Trousers extends Clothes {
     private final String season;
 
-    public Boots(int barcode, double price, String producer, String model, String gender, SizeOfShoes size, String season) {
+    public Trousers(int barcode, double price, String producer, String model, String gender, SizeOfClothes size, String season) {
         super(barcode, price, producer, model, gender, size);
         this.season = season;
     }
@@ -24,13 +23,13 @@ public class Boots extends Shoes {
             return false;
         }
 
-        if (!(obj instanceof Boots)) {
+        if (!(obj instanceof Trousers)) {
             return false;
         }
 
-        Boots boots = (Boots) obj;
+        Trousers trousers = (Trousers) obj;
 
         return super.equals(obj) ||
-                this.season != null && this.season.equals(boots.season);
+                this.season != null && this.season.equals(trousers.season);
     }
 }
