@@ -1,4 +1,4 @@
-package by.itacademy.hw9.Task1;
+package by.itacademy.hw9.task1;
 
 public class Calculator {
     public static <T extends Number> double sum(T firstNumber, T secondNumber) {

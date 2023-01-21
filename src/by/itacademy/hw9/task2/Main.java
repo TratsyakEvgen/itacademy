@@ -1,4 +1,4 @@
-package by.itacademy.hw9.Task2;
+package by.itacademy.hw9.task2;
 
 public class Main {
     public static void main(String[] args) {
