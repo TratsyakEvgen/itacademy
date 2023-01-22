@@ -2,6 +2,7 @@ package by.itacademy.hw10.task4.service;
 
 import by.itacademy.hw10.task4.entity.animals.Animal;
 import by.itacademy.hw10.task4.repsitory.LogbookRepository;
+import by.itacademy.hw10.task4.util.ListUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,6 +11,11 @@ import java.util.List;
 
 public class LogbookService {
     private final LogbookRepository logbookRepository = new LogbookRepository();
+
+    @Override
+    public String toString() {
+        return ListUtil.ListToString(logbookRepository.getAnimals());
+    }
 
     public List<Animal> getAnimalsSortedByName() {
         List<Animal> animals = logbookRepository.getAnimals();
@@ -45,7 +51,7 @@ public class LogbookService {
         return priceRange;
     }
 
-    public String buyAnimal(String nickname, LogbookRepository logbookRepository) {
+    public String buyAnimal(String nickname) {
         List<Animal> animals = logbookRepository.getAnimals();
         for (int i = 0; i < animals.size(); i++) {
             if (animals.get(i).getNickname().equals(nickname)) {
