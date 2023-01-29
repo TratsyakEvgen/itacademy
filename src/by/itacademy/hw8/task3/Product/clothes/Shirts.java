@@ -1,4 +1,4 @@
-package by.itacademy.hw8.task3.Product.Clothes;
+package by.itacademy.hw8.task3.Product.clothes;
 
 public class Shirts extends Clothes{
     private final String type;

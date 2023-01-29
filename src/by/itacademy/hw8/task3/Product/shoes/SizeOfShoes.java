@@ -1,4 +1,4 @@
-package by.itacademy.hw8.task3.Product.Shoes;
+package by.itacademy.hw8.task3.Product.shoes;
 
 public enum SizeOfShoes {
     XXS(35),

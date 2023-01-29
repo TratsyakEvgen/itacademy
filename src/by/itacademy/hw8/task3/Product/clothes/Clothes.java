@@ -1,12 +1,12 @@
-package by.itacademy.hw8.task3.Product.Shoes;
+package by.itacademy.hw8.task3.Product.clothes;
 
 import by.itacademy.hw8.task3.Product.Product;
 
-public class Shoes extends Product {
+public class Clothes extends Product {
     private final String gender;
-    private final SizeOfShoes size;
+    private final SizeOfClothes size;
 
-    public Shoes(int barcode, double price, String producer, String model, String gender, SizeOfShoes size) {
+    public Clothes(int barcode, double price, String producer, String model, String gender, SizeOfClothes size) {
         super(barcode, price, producer, model);
         this.gender = gender;
         this.size = size;
@@ -16,7 +16,7 @@ public class Shoes extends Product {
         return gender;
     }
 
-    public SizeOfShoes getSize() {
+    public SizeOfClothes getSize() {
         return size;
     }
 
@@ -36,14 +36,14 @@ public class Shoes extends Product {
             return false;
         }
 
-        if (!(obj instanceof Shoes)) {
+        if (!(obj instanceof Clothes)) {
             return false;
         }
 
-        Shoes shoes = (Shoes) obj;
+        Clothes clothes = (Clothes) obj;
 
         return super.equals(obj) ||
-                this.gender != null && this.gender.equals(shoes.gender) ||
-                this.size.getSize() == shoes.size.getSize();
+                this.gender != null && this.gender.equals(clothes.gender) ||
+                this.size.getSize() == clothes.size.getSize();
     }
 }

@@ -1,11 +1,11 @@
 package by.itacademy.hw8.task3;
 
 
-import by.itacademy.hw8.task3.Product.Clothes.*;
-import by.itacademy.hw8.task3.Product.Shoes.Boots;
-import by.itacademy.hw8.task3.Product.Shoes.SizeOfShoes;
-import by.itacademy.hw8.task3.Product.Shoes.Slippers;
-import by.itacademy.hw8.task3.Product.Shoes.Sneakers;
+import by.itacademy.hw8.task3.Product.clothes.*;
+import by.itacademy.hw8.task3.Product.shoes.Boots;
+import by.itacademy.hw8.task3.Product.shoes.SizeOfShoes;
+import by.itacademy.hw8.task3.Product.shoes.Slippers;
+import by.itacademy.hw8.task3.Product.shoes.Sneakers;
 import by.itacademy.hw8.task3.Product.ShopWindow;
 
 

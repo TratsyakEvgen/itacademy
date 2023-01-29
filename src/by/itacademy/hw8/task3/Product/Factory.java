@@ -1,7 +1,7 @@
 package by.itacademy.hw8.task3.Product;
 
-import by.itacademy.hw8.task3.Product.Clothes.*;
-import by.itacademy.hw8.task3.Product.Shoes.*;
+import by.itacademy.hw8.task3.Product.clothes.*;
+import by.itacademy.hw8.task3.Product.shoes.*;
 
 import java.util.Scanner;
 
