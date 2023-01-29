@@ -14,7 +14,7 @@ public class LogbookService {
 
     @Override
     public String toString() {
-        return ListUtil.ListToString(logbookRepository.getAnimals());
+        return ListUtil.listToString(logbookRepository.getAnimals());
     }
 
     public List<Animal> getAnimalsSortedByName() {

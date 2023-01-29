@@ -13,15 +13,15 @@ public class Main {
         System.out.println(logbookService);
 
         System.out.println("Сортировка по кличке:");
-        System.out.println(ListUtil.ListToString(logbookService.getAnimalsSortedByName()));
+        System.out.println(ListUtil.listToString(logbookService.getAnimalsSortedByName()));
 
         System.out.println("Сортировка по цене:");
-        System.out.println(ListUtil.ListToString(logbookService.getAnimalsSortedByPrice()));
+        System.out.println(ListUtil.listToString(logbookService.getAnimalsSortedByPrice()));
 
         System.out.println("Диапозон цены от 20 до 40:");
         BigDecimal low = BigDecimal.valueOf(20);
         BigDecimal high = BigDecimal.valueOf(40);
-        System.out.println(ListUtil.ListToString(logbookService.getPriceRange(low, high)));
+        System.out.println(ListUtil.listToString(logbookService.getPriceRange(low, high)));
 
         System.out.println("Купим Валеру:");
         System.out.println(logbookService.buyAnimal("Валера"));
