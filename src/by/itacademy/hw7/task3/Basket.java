@@ -1,10 +1,11 @@
 package by.itacademy.hw7.task3;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Basket {
-    private final ArrayList<Fruit> basket = new ArrayList<>();
+    private final List<Fruit> basket = new ArrayList<>();
 
     public Basket() {
     }

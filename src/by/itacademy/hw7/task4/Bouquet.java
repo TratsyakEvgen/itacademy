@@ -1,10 +1,11 @@
 package by.itacademy.hw7.task4;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Bouquet {
-    ArrayList<Flower> bouquet = new ArrayList<>();
+    List<Flower> bouquet = new ArrayList<>();
 
     public Bouquet() {
     }
