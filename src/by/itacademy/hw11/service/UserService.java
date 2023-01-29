@@ -7,78 +7,55 @@ import by.itacademy.hw11.service.exception.WrongLoginException;
 import by.itacademy.hw11.service.exception.WrongPasswordException;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class UserService {
-
-    private final Scanner scanner = new Scanner(System.in);
     private final List<User> users = UserRepository.getInstance().getUsers();
 
+    public String authorization(String login, String password) {
 
-    public void authorization() {
-        System.out.print("Логин: ");
-        User user = findUser(scanner.nextLine());
+        User user = findUser(login);
 
         try {
             if (user == null) {
                 throw new UserNotExistException("Пользователя не существует");
             }
         } catch (UserNotExistException e) {
-            System.out.println(e);
-            return;
+            return e.toString();
         }
-
-        System.out.print("Пароль: ");
-        String password = scanner.nextLine();
 
         try {
             if (user.getPassword().equals(password)) {
-                System.out.println("Вы авторизованы!");
+                return "Вы авторизованы!";
             } else {
                 throw new WrongPasswordException("Неверный пароль");
             }
         } catch (WrongPasswordException e) {
-            System.out.println(e);
+            return e.toString();
         }
     }
 
-    public void registration() {
-        String login = null;
-
-        boolean isLogin = false;
-        while (!isLogin) {
-            System.out.print("Логин: ");
-            login = scanner.nextLine();
-
-            isLogin = login.matches("[\\w+]{5,20}");
-
-            try {
-                if (!isLogin) {
-                    throw new WrongLoginException("Неверный формат логина");
-                }
-            } catch (WrongLoginException e) {
-                System.out.println(e);
+    public String registration(String login, String password) {
+        boolean isLogin = login.matches("[\\w+]{5,20}");
+        try {
+            if (!isLogin) {
+                throw new WrongLoginException("Неверный формат логина");
             }
+        } catch (WrongLoginException e) {
+            return e.toString();
         }
 
-        boolean isPassword = false;
-        while (!isPassword) {
-            System.out.print("Пароль: ");
-            String password = scanner.nextLine();
-            isPassword = password.matches("[\\w+]{8,}");
-            try {
-                if (isPassword) {
-                    users.add(new User(login, password));
-                    System.out.println("Вы зарегестрированы!");
-                } else {
-                    throw new WrongPasswordException("Неверный формат пароля");
-                }
-            } catch (WrongPasswordException e) {
-                System.out.println(e);
+        try {
+            if (password.matches("[\\w+]{8,}")) {
+                users.add(new User(login, password));
+                return "Вы зарегестрированы!";
+            } else {
+                throw new WrongPasswordException("Неверный формат пароля");
             }
+        } catch (WrongPasswordException e) {
+            return e.toString();
         }
-
     }
+
 
     private User findUser(String login) {
         for (User user : users) {
