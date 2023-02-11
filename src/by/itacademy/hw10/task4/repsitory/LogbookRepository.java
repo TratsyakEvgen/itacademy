@@ -22,7 +22,7 @@ public class LogbookRepository {
 
     @Override
     public String toString() {
-        return ListUtil.ListToString(animals);
+        return ListUtil.listToString(animals);
     }
 
     private void initAnimals() {
