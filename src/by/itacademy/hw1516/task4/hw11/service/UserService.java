@@ -74,7 +74,7 @@ public class UserService {
             return e.getMessage();
         }
         return users.stream().filter(u -> u.getRegistrationDate().isAfter(dateStart)
-                & u.getRegistrationDate().isBefore(dateEnd)).map(u -> u.toString()).collect(Collectors.joining("\n"));
+                & u.getRegistrationDate().isBefore(dateEnd)).map(User::toString).collect(Collectors.joining("\n"));
     }
 
 
