@@ -17,15 +17,15 @@ public class Main {
     public static void main(String[] args) {
         Map<Class<?>, Map<Class<?>, Object>> mapInstructionsOfParts = new LinkedHashMap<>();
 
-        Map<Class<?>, Object> mapConstructionBody = new HashMap<>();
+        Map<Class<?>, Object> mapConstructionBody = new LinkedHashMap<>();
         mapConstructionBody.put(String.class, "Литой");
         mapConstructionBody.put(Double.class, 12.9);
 
-        Map<Class<?>, Object> mapConstructionEngine = new HashMap<>();
+        Map<Class<?>, Object> mapConstructionEngine = new LinkedHashMap<>();
         mapConstructionEngine.put(String.class, "v12");
         mapConstructionEngine.put(Integer.class, 1300);
 
-        Map<Class<?>, Object> mapConstructionTower = new HashMap<>();
+        Map<Class<?>, Object> mapConstructionTower = new LinkedHashMap<>();
         mapConstructionTower.put(String.class, "Башенка");
 
 
@@ -49,6 +49,6 @@ public class Main {
         AssemblyLine assemblyLine = new AssemblyLine(mapInstructionsOfParts, mapAssemblyOfParts);
         IProduct product = assemblyLine.assemblyProduct(new Tank());
         System.out.println("Получаем готовое изделее: ");
-        System.out.println(product.toString());
+        System.out.println(product);
     }
 }
