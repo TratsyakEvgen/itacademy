@@ -14,7 +14,6 @@ public class Tank implements IProduct {
         this.firstPart = firstPart;
 
     }
-
     @Override
     public void installSecondPart(IProductPart secondPart) {
         this.secondPart = secondPart;
@@ -23,5 +22,14 @@ public class Tank implements IProduct {
     @Override
     public void installThirdPart(IProductPart thirdPart) {
         this.thirdPart = thirdPart;
+    }
+
+    @Override
+    public String toString() {
+        return "Tank{" +
+                "firstPart=" + firstPart +
+                ", secondPart=" + secondPart +
+                ", thirdPart=" + thirdPart +
+                '}';
     }
 }
