@@ -1,7 +1,8 @@
-package by.itacademy.hw18.entity.product.tank;
+package by.itacademy.hw18.task1.entity.product.tank;
 
-import by.itacademy.hw18.interfaces.IProduct;
-import by.itacademy.hw18.interfaces.IProductPart;
+
+import by.itacademy.hw18.task1.interfaces.IProduct;
+import by.itacademy.hw18.task1.interfaces.IProductPart;
 
 public class Tank implements IProduct {
     private IProductPart firstPart;
@@ -14,6 +15,7 @@ public class Tank implements IProduct {
         this.firstPart = firstPart;
 
     }
+
     @Override
     public void installSecondPart(IProductPart secondPart) {
         this.secondPart = secondPart;

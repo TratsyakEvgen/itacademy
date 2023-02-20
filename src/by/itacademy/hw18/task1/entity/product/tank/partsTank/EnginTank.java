@@ -1,6 +1,7 @@
-package by.itacademy.hw18.entity.product.tank.partsTank;
+package by.itacademy.hw18.task1.entity.product.tank.partsTank;
 
-import by.itacademy.hw18.interfaces.IProductPart;
+
+import by.itacademy.hw18.task1.interfaces.IProductPart;
 
 public class EnginTank implements IProductPart {
     private final String model;
