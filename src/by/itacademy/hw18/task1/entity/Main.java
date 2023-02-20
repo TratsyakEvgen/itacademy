@@ -1,12 +1,15 @@
-package by.itacademy.hw18.entity;
+package by.itacademy.hw18.task1.entity;
 
-import by.itacademy.hw18.entity.assemblyLine.AssemblyLine;
-import by.itacademy.hw18.entity.product.tank.Tank;
-import by.itacademy.hw18.entity.product.tank.partsTank.BodyTank;
-import by.itacademy.hw18.entity.product.tank.partsTank.EnginTank;
-import by.itacademy.hw18.entity.product.tank.partsTank.TowerTank;
-import by.itacademy.hw18.interfaces.IProduct;
-import by.itacademy.hw18.interfaces.IProductPart;
+import by.itacademy.hw18.task1.entity.assembly.line.AssemblyLine;
+
+
+import by.itacademy.hw18.task1.entity.product.tank.Tank;
+import by.itacademy.hw18.task1.entity.product.tank.partsTank.BodyTank;
+import by.itacademy.hw18.task1.entity.product.tank.partsTank.EnginTank;
+import by.itacademy.hw18.task1.entity.product.tank.partsTank.TowerTank;
+import by.itacademy.hw18.task1.interfaces.IProduct;
+import by.itacademy.hw18.task1.interfaces.IProductPart;
+
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

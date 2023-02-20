@@ -1,7 +1,7 @@
-package by.itacademy.hw18.entity.assemblyLine;
+package by.itacademy.hw18.task1.entity.assembly.line;
 
-import by.itacademy.hw18.interfaces.ILineStep;
-import by.itacademy.hw18.interfaces.IProductPart;
+import by.itacademy.hw18.task1.interfaces.ILineStep;
+import by.itacademy.hw18.task1.interfaces.IProductPart;
 
 import java.lang.reflect.InvocationTargetException;
 
