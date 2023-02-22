@@ -1,15 +1,17 @@
 package by.itacademy.hw19.task1.entity;
 
-public class Client {
-    private String firsName;
+import java.io.Serializable;
+
+public class Client implements Serializable {
+    private String firstName;
     private String lastName;
     private String identification;
     private int age;
     private String country;
     private String phoneNumber;
 
-    public Client(String firsName, String lastName, String identification, int age, String country, String phoneNumber) {
-        this.firsName = firsName;
+    public Client(String firstName, String lastName, String identification, int age, String country, String phoneNumber) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.identification = identification;
         this.age = age;
@@ -17,12 +19,12 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFirsName() {
-        return firsName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirsName(String firsName) {
-        this.firsName = firsName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -64,4 +66,6 @@ public class Client {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+
 }
