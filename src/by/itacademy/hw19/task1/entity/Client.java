@@ -19,53 +19,37 @@ public class Client implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getIdentification() {
-        return identification;
-    }
-
     public void setIdentification(String identification) {
         this.identification = identification;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-
+    @Override
+    public String toString() {
+        return "Имя: " + firstName + "\n" +
+               "Фамилия: " + lastName + "\n" +
+               "Номер паспорта: " + identification + "\n" +
+               "Возраст: " + age + "\n" +
+               "Страна: " + country + "\n" +
+               "Номер телефона: " + phoneNumber;
+    }
 }

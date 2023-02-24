@@ -1,6 +1,6 @@
-package by.itacademy.hw19.task1.repository.client.ioperation;
+package by.itacademy.hw19.task1.repository.ioperation;
 
-import by.itacademy.hw19.task1.logger.Logger;
+import by.itacademy.hw19.task1.interfaces.Logger;
 
 import java.io.*;
 

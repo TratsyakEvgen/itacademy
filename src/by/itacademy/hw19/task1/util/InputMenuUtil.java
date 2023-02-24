@@ -1,15 +1,15 @@
 package by.itacademy.hw19.task1.util;
 
-import by.itacademy.hw19.task1.logger.Logger;
+import by.itacademy.hw19.task1.interfaces.Logger;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class EntryMenuUtil {
-    private final Scanner scanner = new Scanner(System.in);
+public class InputMenuUtil {
+    private Scanner scanner = new Scanner(System.in);
     private final Logger logger;
 
-    public EntryMenuUtil(Logger logger) {
+    public InputMenuUtil(Logger logger) {
         this.logger = logger;
     }
 
@@ -28,6 +28,7 @@ public class EntryMenuUtil {
                 }
             } catch (NoSuchElementException | IllegalStateException e) {
                 logger.write("Ошибка! " + this.getClass() + "\n" + e.getMessage());
+                scanner = new Scanner(System.in);
             }
         }
         return value;
@@ -44,10 +45,10 @@ public class EntryMenuUtil {
                     verify = true;
                 } else {
                     System.out.println("Неверный формат!(" + regex + ") Повторите ввод:");
-                    System.out.println();
                 }
             } catch (NoSuchElementException | IllegalStateException e) {
                 logger.write("Ошибка! " + this.getClass() + "\n" + e.getMessage());
+                scanner = new Scanner(System.in);
             }
         }
         return value;
@@ -57,5 +58,6 @@ public class EntryMenuUtil {
         System.out.print(message);
         return scanner.nextLine();
     }
+
 
 }
