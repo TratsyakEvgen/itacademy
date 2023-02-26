@@ -22,9 +22,6 @@ public class Room implements Serializable {
         this.description = description;
     }
 
-    public String getNumber() {
-        return number;
-    }
 
     public void setNumber(String number) {
         this.number = number;
@@ -42,21 +39,11 @@ public class Room implements Serializable {
         return clients;
     }
 
-    public void setClients(Map<Integer, Client> clients) {
-        this.clients = clients;
-    }
 
     public Map<Integer, Service> getServices() {
         return services;
     }
 
-    public void setServices(Map<Integer, Service> services) {
-        this.services = services;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     public void setDescription(String description) {
         this.description = description;

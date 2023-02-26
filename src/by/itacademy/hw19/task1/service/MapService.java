@@ -10,9 +10,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MapService<K, V> {
-    private final Map<K, V> map;
+    protected Map<K, V> map;
 
-    private final Logger logger;
+    protected Logger logger;
 
     public MapService(Map<K, V> map, Logger logger) {
         this.map = map;
@@ -51,13 +51,13 @@ public class MapService<K, V> {
         return String.valueOf(stringBuilder);
     }
 
-    private <T> Map<K, V> filter(String fieldName, T value, Predicate predicate) {
+    protected <T> Map<K, V> filter(String fieldName, T value, Predicate predicate) {
         return map.entrySet().stream().filter(entry -> {
-            Object client = entry.getValue();
+            Object object = entry.getValue();
             try {
-                Field field = client.getClass().getDeclaredField(fieldName);
+                Field field = object.getClass().getDeclaredField(fieldName);
                 field.setAccessible(true);
-                return predicate.compareValues(field.get(client), value);
+                return predicate.compareValues(field.get(object), value);
             } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e) {
                 logger.write("Ошибка! " + this.getClass() + "\n" + e.getMessage());
             }

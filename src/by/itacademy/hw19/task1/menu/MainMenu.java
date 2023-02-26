@@ -7,6 +7,7 @@ import by.itacademy.hw19.task1.entity.Service;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.logger.ConsoleLogger;
 import by.itacademy.hw19.task1.menu.client.ClientMenu;
+import by.itacademy.hw19.task1.menu.order.OrderMenu;
 import by.itacademy.hw19.task1.menu.room.RoomMenu;
 import by.itacademy.hw19.task1.menu.service.ServiceMenu;
 import by.itacademy.hw19.task1.repository.MapRepository;
@@ -69,7 +70,7 @@ public class MainMenu {
                 show();
                 break;
             case 4:
-                System.out.println("4");
+                new OrderMenu().show();
                 show();
                 break;
             case 0:

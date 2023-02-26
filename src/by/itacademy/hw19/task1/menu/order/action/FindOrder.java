@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class FindOrder implements IFindMenu<Integer,Order> {
+public class FindOrder implements IFindMenu<Integer, Order> {
 
     private final Logger logger;
     private final InputMenuUtil inputMenuUtil;

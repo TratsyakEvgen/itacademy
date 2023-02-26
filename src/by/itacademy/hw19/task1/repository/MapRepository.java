@@ -20,8 +20,8 @@ public class MapRepository<V> {
     public Map<Integer, V> read() {
         InputOperation inputOperation = new InputOperation(path, logger);
         Object object = inputOperation.read();
-        if (object instanceof Map) {
-            return (Map<Integer, V>) inputOperation.read();
+        if (object instanceof Map<?, ?>) {
+            return (Map<Integer, V>) object;
         }
         return new HashMap<>();
     }

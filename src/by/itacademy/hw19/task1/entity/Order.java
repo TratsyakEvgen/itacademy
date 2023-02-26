@@ -2,20 +2,21 @@ package by.itacademy.hw19.task1.entity;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 public class Order {
-    private Room room;
-    private Client client;
-    private Service service;
-    private int numberOfServices;
+    private final Map.Entry<Integer, Room> room;
+    private final Map.Entry<Integer, Client> client;
+    private final Map.Entry<Integer, Service> service;
+    private final int numberOfServices;
     private boolean status;
-    private LocalDateTime start;
-    private LocalDateTime end;
-    private String description;
+    private final LocalDateTime start;
+    private final LocalDateTime end;
+    private final String description;
 
-    public Order(Room room,
-                 Client client,
-                 Service service,
+    public Order(Map.Entry<Integer, Room> room,
+                 Map.Entry<Integer, Client> client,
+                 Map.Entry<Integer, Service> service,
                  int numberOfServices,
                  LocalDateTime start,
                  LocalDateTime end, String description) {
@@ -29,37 +30,26 @@ public class Order {
         this.description = description;
     }
 
-    public Room getRoom() {
+    public Map.Entry<Integer, Room> getRoom() {
         return room;
     }
 
-    public Client getClient() {
+    public Map.Entry<Integer, Client> getClient() {
         return client;
     }
 
-    public Service getService() {
+    public Map.Entry<Integer, Service> getService() {
         return service;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getNumberOfServices() {
         return numberOfServices;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public LocalDateTime getStart() {
-        return start;
-    }
-
-    public LocalDateTime getEnd() {
-        return end;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     @Override
     public String toString() {
