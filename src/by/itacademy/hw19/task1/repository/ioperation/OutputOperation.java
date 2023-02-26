@@ -2,7 +2,9 @@ package by.itacademy.hw19.task1.repository.ioperation;
 
 import by.itacademy.hw19.task1.interfaces.Logger;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class OutputOperation {
     private final String path;
@@ -13,13 +15,12 @@ public class OutputOperation {
         this.logger = logger;
     }
 
-    public Object write(Object object){
-        try (FileOutputStream fileOutputStream = new FileOutputStream(path)){
+    public void write(Object object) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(path)) {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(object);
-        } catch (SecurityException | IOException e){
+        } catch (SecurityException | IOException e) {
             logger.write("Ошибка! " + this.getClass() + "\n" + e.getMessage());
         }
-        return object;
     }
 }

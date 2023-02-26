@@ -2,6 +2,9 @@ package by.itacademy.hw19.task1.util;
 
 import by.itacademy.hw19.task1.interfaces.Logger;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -13,16 +16,16 @@ public class InputMenuUtil {
         this.logger = logger;
     }
 
-    public int entryVerifyInt(String message, int start, int end) {
+    public int entryValidInt(String message, int start, int end) {
         System.out.print(message);
-        boolean verify = false;
+        boolean valid = false;
         int value = 0;
-        while (!verify) {
+        while (!valid) {
             try {
                 value = scanner.nextInt();
                 scanner.nextLine();
                 if (value >= start && value <= end) {
-                    verify = true;
+                    valid = true;
                 } else {
                     System.out.println("Неверный номер! Повторите ввод:");
                 }
@@ -34,15 +37,15 @@ public class InputMenuUtil {
         return value;
     }
 
-    public String entryVerifyString(String message, String regex) {
+    public String entryValidString(String message, String regex) {
         System.out.print(message);
-        boolean verify = false;
+        boolean valid = false;
         String value = null;
-        while (!verify) {
+        while (!valid) {
             try {
                 value = scanner.nextLine();
                 if (value.matches(regex)) {
-                    verify = true;
+                    valid = true;
                 } else {
                     System.out.println("Неверный формат!(" + regex + ") Повторите ввод:");
                 }
@@ -52,6 +55,40 @@ public class InputMenuUtil {
             }
         }
         return value;
+    }
+
+    public boolean entryValidBoolean(String message) {
+        System.out.print(message);
+        boolean valid = false;
+        boolean value = false;
+        while (!valid) {
+            try {
+                value = scanner.nextBoolean();
+                valid = true;
+            } catch (NoSuchElementException | IllegalStateException e) {
+                logger.write("Ошибка! " + this.getClass() + "\n" + e.getMessage());
+                scanner = new Scanner(System.in);
+            }
+        }
+        return value;
+    }
+
+    public LocalDateTime entryValidDate(String message) {
+        System.out.print(message);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        boolean valid = false;
+        String value = "";
+        while (!valid) {
+            try {
+                value = scanner.nextLine();
+                formatter.parse(value);
+                valid = true;
+            } catch (NoSuchElementException | IllegalStateException | DateTimeParseException e) {
+                logger.write("Ошибка! " + this.getClass() + "\n" + e.getMessage());
+                scanner = new Scanner(System.in);
+            }
+        }
+        return LocalDateTime.parse(value, formatter);
     }
 
     public String entryString(String message) {

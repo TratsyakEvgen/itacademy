@@ -6,9 +6,7 @@ import by.itacademy.hw19.task1.repository.ioperation.OutputOperation;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 public class MapRepository<V> {
     private final String path;
@@ -47,16 +45,7 @@ public class MapRepository<V> {
         write(map);
     }
 
-    public Optional<Map.Entry<Integer, V>> get(Integer key) {
-        return read().entrySet()
-                .stream()
-                .filter(entry -> Objects.equals(entry.getKey(), key))
-                .collect(Collectors.toSet())
-                .stream()
-                .findFirst();
-    }
-
-    private void write(Map<Integer, V> map) {
+    public void write(Map<Integer, V> map) {
         OutputOperation outputOperation = new OutputOperation(path, logger);
         outputOperation.write(map);
     }

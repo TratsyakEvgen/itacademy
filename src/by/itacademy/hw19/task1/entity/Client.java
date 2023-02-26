@@ -45,11 +45,11 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "Имя: " + firstName + "\n" +
-               "Фамилия: " + lastName + "\n" +
-               "Номер паспорта: " + identification + "\n" +
-               "Возраст: " + age + "\n" +
-               "Страна: " + country + "\n" +
-               "Номер телефона: " + phoneNumber;
+        return "Имя: " + firstName +
+               "\nФамилия: " + lastName +
+               "\nНомер паспорта: " + identification +
+               "\nВозраст: " + age +
+               "\nСтрана: " + country +
+               "\nНомер телефона: " + phoneNumber;
     }
 }

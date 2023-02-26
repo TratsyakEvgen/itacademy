@@ -2,7 +2,9 @@ package by.itacademy.hw19.task1.repository.ioperation;
 
 import by.itacademy.hw19.task1.interfaces.Logger;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 public class InputOperation {
     private final String path;

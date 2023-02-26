@@ -1,13 +1,14 @@
 package by.itacademy.hw19.task1.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class ServiceOfHotel {
+public class Service implements Serializable {
     private String name;
     private BigDecimal price;
     private String description;
 
-    public ServiceOfHotel(String name, BigDecimal price, String description) {
+    public Service(String name, BigDecimal price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -27,8 +28,8 @@ public class ServiceOfHotel {
 
     @Override
     public String toString() {
-        return "Название: " + name + "\n" +
-               "Цена: " + price  + "\n" +
-               "Описание: " + description;
+        return "Название услуги: " + name +
+               "\nЦена услуги: " + price +
+               "\nОписание услуги: " + description;
     }
 }
