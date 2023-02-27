@@ -18,7 +18,7 @@ public class LogbookRepository {
 
     public List<Animal> getAnimals() {
         return animals;
-    }
+    }//
 
     @Override
     public String toString() {
