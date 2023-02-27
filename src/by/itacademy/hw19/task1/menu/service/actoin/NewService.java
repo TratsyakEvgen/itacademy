@@ -2,8 +2,8 @@ package by.itacademy.hw19.task1.menu.service.actoin;
 
 import by.itacademy.hw19.task1.entity.Service;
 import by.itacademy.hw19.task1.menu.MainMenu;
-import by.itacademy.hw19.task1.repository.MapRepository;
 import by.itacademy.hw19.task1.menu.action.InputValue;
+import by.itacademy.hw19.task1.repository.MapRepository;
 
 import java.math.BigDecimal;
 

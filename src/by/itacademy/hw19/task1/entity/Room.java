@@ -21,6 +21,9 @@ public class Room implements Serializable {
         this.description = description;
     }
 
+    public String getNumber() {
+        return number;
+    }
 
     public void setNumber(String number) {
         this.number = number;

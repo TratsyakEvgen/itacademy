@@ -2,8 +2,8 @@ package by.itacademy.hw19.task1.menu.client.actoin;
 
 import by.itacademy.hw19.task1.entity.Client;
 import by.itacademy.hw19.task1.menu.MainMenu;
-import by.itacademy.hw19.task1.repository.MapRepository;
 import by.itacademy.hw19.task1.menu.action.InputValue;
+import by.itacademy.hw19.task1.repository.MapRepository;
 
 public class EditClient {
 

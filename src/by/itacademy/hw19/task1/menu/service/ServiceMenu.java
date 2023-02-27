@@ -2,13 +2,13 @@ package by.itacademy.hw19.task1.menu.service;
 
 import by.itacademy.hw19.task1.entity.Service;
 import by.itacademy.hw19.task1.menu.MainMenu;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 import by.itacademy.hw19.task1.menu.action.SelectValue;
 import by.itacademy.hw19.task1.menu.service.actoin.DeleteService;
 import by.itacademy.hw19.task1.menu.service.actoin.EditService;
 import by.itacademy.hw19.task1.menu.service.actoin.FindService;
 import by.itacademy.hw19.task1.menu.service.actoin.NewService;
 import by.itacademy.hw19.task1.repository.MapRepository;
-import by.itacademy.hw19.task1.menu.action.InputValue;
 
 public class ServiceMenu {
     private final InputValue inputValue;

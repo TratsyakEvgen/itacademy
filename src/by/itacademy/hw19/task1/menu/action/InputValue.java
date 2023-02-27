@@ -82,7 +82,7 @@ public class InputValue {
     }
 
     public boolean entryBoolean(String message) {
-        switch (entryValidInt(message,1,2)){
+        switch (entryValidInt(message, 1, 2)) {
             case 1:
                 return true;
             case 2:

@@ -10,9 +10,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MapService<K, V> {
-    protected Map<K, V> map;
+    public Map<K, V> map;
 
-    protected Logger logger;
+    public Logger logger;
 
     public MapService(Map<K, V> map, Logger logger) {
         this.map = map;
@@ -36,10 +36,19 @@ public class MapService<K, V> {
         return filter(fieldName, value, Object::equals);
     }
 
-    public Optional<Map.Entry<K, V>> get(Integer key) {
+    public Optional<Map.Entry<K, V>> getEntryForKey(Integer key) {
         return map.entrySet()
                 .stream()
                 .filter(entry -> Objects.equals(entry.getKey(), key))
+                .collect(Collectors.toSet())
+                .stream()
+                .findFirst();
+    }
+
+    public Optional<Map.Entry<K, V>> getEntryForValue(V value) {
+        return map.entrySet()
+                .stream()
+                .filter(entry -> Objects.equals(entry.getValue(), value))
                 .collect(Collectors.toSet())
                 .stream()
                 .findFirst();
@@ -55,7 +64,7 @@ public class MapService<K, V> {
         return String.valueOf(stringBuilder);
     }
 
-    protected <T> Map<K, V> filter(String fieldName, T value, Predicate predicate) {
+    private <T> Map<K, V> filter(String fieldName, T value, Predicate predicate) {
         return map.entrySet().stream().filter(entry -> {
             Object object = entry.getValue();
             try {

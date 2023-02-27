@@ -2,12 +2,12 @@ package by.itacademy.hw19.task1.menu.room;
 
 import by.itacademy.hw19.task1.entity.Room;
 import by.itacademy.hw19.task1.menu.MainMenu;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 import by.itacademy.hw19.task1.menu.action.SelectValue;
 import by.itacademy.hw19.task1.menu.room.actoin.EditRoom;
 import by.itacademy.hw19.task1.menu.room.actoin.FindRoom;
 import by.itacademy.hw19.task1.menu.room.actoin.NewRoom;
 import by.itacademy.hw19.task1.repository.MapRepository;
-import by.itacademy.hw19.task1.menu.action.InputValue;
 
 public class RoomMenu {
     private final InputValue inputValue;

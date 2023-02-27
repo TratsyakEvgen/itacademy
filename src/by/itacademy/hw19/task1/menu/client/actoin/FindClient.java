@@ -4,8 +4,8 @@ import by.itacademy.hw19.task1.entity.Client;
 import by.itacademy.hw19.task1.interfaces.IFindMenu;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.menu.MainMenu;
-import by.itacademy.hw19.task1.service.MapService;
 import by.itacademy.hw19.task1.menu.action.InputValue;
+import by.itacademy.hw19.task1.service.MapService;
 
 import java.util.HashMap;
 import java.util.Map;

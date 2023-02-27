@@ -3,8 +3,10 @@ package by.itacademy.hw19.task1.menu.order;
 import by.itacademy.hw19.task1.entity.Client;
 import by.itacademy.hw19.task1.entity.Order;
 import by.itacademy.hw19.task1.entity.Room;
+import by.itacademy.hw19.task1.entity.Service;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.menu.MainMenu;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 import by.itacademy.hw19.task1.menu.action.SelectValue;
 import by.itacademy.hw19.task1.menu.client.actoin.FindClient;
 import by.itacademy.hw19.task1.menu.order.action.FindOrder;
@@ -13,7 +15,6 @@ import by.itacademy.hw19.task1.menu.room.actoin.FindRoom;
 import by.itacademy.hw19.task1.repository.MapRepository;
 import by.itacademy.hw19.task1.service.MapService;
 import by.itacademy.hw19.task1.service.OrderService;
-import by.itacademy.hw19.task1.menu.action.InputValue;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class OrderMenu {
     private final MapRepository<Order> orders;
     private final MapRepository<Room> rooms;
     private final MapRepository<Client> clients;
+    private final MapRepository<Service> services;
 
     public OrderMenu() {
         this.logger = MainMenu.getLogger();
@@ -33,6 +35,7 @@ public class OrderMenu {
         this.inputValue = MainMenu.getInputValue();
         this.orders = MainMenu.getOrders();
         this.clients = MainMenu.getClients();
+        this.services = MainMenu.getServices();
     }
 
     public void show() {
@@ -55,7 +58,7 @@ public class OrderMenu {
                 Optional<Map.Entry<Integer, Order>> orderEntry = new SelectValue<Integer, Order>()
                         .show(orders.read(), new FindOrder());
                 if (orderEntry.isPresent()) {
-                    BigDecimal price = new OrderService(orders, rooms).closeOrder(orderEntry.get());
+                    BigDecimal price = new OrderService(logger, orders, rooms, services).closeOrder(orderEntry.get());
                     System.out.println("Заказ закрыт! Сумма заказа: " + price);
                 }
                 break;
@@ -64,8 +67,8 @@ public class OrderMenu {
                         .show(rooms.read(), new FindRoom());
                 if (roomEntry.isPresent()) {
                     Map<Integer, Order> ClosedOrders = new MapService<>(orders.read(), logger)
-                            .filterByFieldValue("room", roomEntry.get());
-                    BigDecimal price = new OrderService(orders, rooms).closeAllOrder(ClosedOrders);
+                            .filterByFieldValue("idRoom", roomEntry.get().getKey());
+                    BigDecimal price = new OrderService(logger, orders, rooms, services).closeAllOrder(ClosedOrders);
                     System.out.println("Заказы закрыт! Сумма заказов: " + price);
                 }
                 break;
@@ -74,8 +77,8 @@ public class OrderMenu {
                         .show(clients.read(), new FindClient());
                 if (clientEntry.isPresent()) {
                     Map<Integer, Order> ClosedOrders = new MapService<>(orders.read(), logger)
-                            .filterByFieldValue("room", clientEntry.get());
-                    BigDecimal price = new OrderService(orders, rooms).closeAllOrder(ClosedOrders);
+                            .filterByFieldValue("idClient", clientEntry.get().getKey());
+                    BigDecimal price = new OrderService(logger, orders, rooms, services).closeAllOrder(ClosedOrders);
                     System.out.println("Заказы закрыт! Сумма заказов: " + price);
                 }
                 break;

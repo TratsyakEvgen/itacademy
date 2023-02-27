@@ -29,7 +29,7 @@ public class SelectValue<K, V> {
                 break;
             case 2:
                 int id = inputValue.entryValidInt("Введите id: ", 1, 2147483647);
-                optional = new MapService<>(map, logger).get(id);
+                optional = new MapService<>(map, logger).getEntryForKey(id);
                 if (optional.isEmpty()) {
                     System.out.println("По запросу ничего не найден");
                 }

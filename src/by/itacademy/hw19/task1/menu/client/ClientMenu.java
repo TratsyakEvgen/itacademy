@@ -2,12 +2,12 @@ package by.itacademy.hw19.task1.menu.client;
 
 import by.itacademy.hw19.task1.entity.Client;
 import by.itacademy.hw19.task1.menu.MainMenu;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 import by.itacademy.hw19.task1.menu.action.SelectValue;
 import by.itacademy.hw19.task1.menu.client.actoin.EditClient;
 import by.itacademy.hw19.task1.menu.client.actoin.FindClient;
 import by.itacademy.hw19.task1.menu.client.actoin.NewClient;
 import by.itacademy.hw19.task1.repository.MapRepository;
-import by.itacademy.hw19.task1.menu.action.InputValue;
 
 public class ClientMenu {
     private final InputValue inputValue;

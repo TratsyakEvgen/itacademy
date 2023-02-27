@@ -1,39 +1,25 @@
 package by.itacademy.hw19.task1.menu.order.action;
 
-import by.itacademy.hw19.task1.entity.Client;
 import by.itacademy.hw19.task1.entity.Order;
-import by.itacademy.hw19.task1.entity.Room;
-import by.itacademy.hw19.task1.entity.Service;
 import by.itacademy.hw19.task1.interfaces.IFindMenu;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.menu.MainMenu;
-import by.itacademy.hw19.task1.menu.action.SelectValue;
-import by.itacademy.hw19.task1.menu.client.actoin.FindClient;
-import by.itacademy.hw19.task1.menu.room.actoin.FindRoom;
-import by.itacademy.hw19.task1.menu.service.actoin.FindService;
-import by.itacademy.hw19.task1.repository.MapRepository;
-import by.itacademy.hw19.task1.service.MapService;
 import by.itacademy.hw19.task1.menu.action.InputValue;
+import by.itacademy.hw19.task1.service.MapService;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class FindOrder implements IFindMenu<Integer, Order> {
 
     private final Logger logger;
     private final InputValue inputValue;
-    private final MapRepository<Service> services;
-    private final MapRepository<Client> clients;
-    private final MapRepository<Room> rooms;
+
 
     public FindOrder() {
         this.logger = MainMenu.getLogger();
         this.inputValue = MainMenu.getInputValue();
-        this.services = MainMenu.getServices();
-        this.clients = MainMenu.getClients();
-        this.rooms = MainMenu.getRooms();
     }
 
     @Override
@@ -53,28 +39,17 @@ public class FindOrder implements IFindMenu<Integer, Order> {
 
         switch (inputValue.entryValidInt("Выбирете действие: ", 0, 8)) {
             case 1:
-                System.out.println("Номер: ");
-                Optional<Map.Entry<Integer, Room>> room =
-                        new SelectValue<Integer, Room>().show(rooms.read(), new FindRoom());
-                if (room.isPresent()) {
-                    orders = mapService.filterByFieldValue("room", room.get());
-                }
+                orders = mapService.filterByFieldValue("idRoom",
+                        inputValue.entryValidInt("Введите id номера: ", 1, 2147483647));
+
                 break;
             case 2:
-                System.out.println("Постоялец: ");
-                Optional<Map.Entry<Integer, Client>> client =
-                        new SelectValue<Integer, Client>().show(clients.read(), new FindClient());
-                if (client.isPresent()) {
-                    orders = mapService.filterByFieldValue("client", client.get());
-                }
+                orders = mapService.filterByFieldValue("idClient",
+                        inputValue.entryValidInt("Введите id постояльца: ", 1, 2147483647));
                 break;
             case 3:
-                System.out.println("Услуга: ");
-                Optional<Map.Entry<Integer, Service>> service =
-                        new SelectValue<Integer, Service>().show(services.read(), new FindService());
-                if (service.isPresent()) {
-                    orders = mapService.filterByFieldValue("service", service.get());
-                }
+                orders = mapService.filterByFieldValue("idService",
+                        inputValue.entryValidInt("Введите id услуги: ", 1, 2147483647));
                 break;
             case 4:
                 orders = mapService.filterByFieldValue("numberOfServices",

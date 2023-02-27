@@ -34,6 +34,6 @@ public class Service implements Serializable {
     public String toString() {
         return "Название услуги: " + name +
                "\nЦена услуги: " + price +
-               "\nОписание услуги: " + description  + "\n";
+               "\nОписание услуги: " + description + "\n";
     }
 }

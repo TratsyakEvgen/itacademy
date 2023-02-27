@@ -15,7 +15,6 @@ import by.itacademy.hw19.task1.repository.MapRepository;
 import by.itacademy.hw19.task1.service.RoomService;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -44,9 +43,9 @@ public class NewOrder {
                 }
             }
         }
-        Map.Entry<Integer, Room> room = optionalRoom.get();
-        Map<Integer, Room> roomMap = new HashMap<>();
-        roomMap.put(room.getKey(), room.getValue());
+        Map.Entry<Integer, Room> roomEntry = optionalRoom.get();
+        int idRoom = roomEntry.getKey();
+
 
         System.out.println("Постоялец (обязательно для заполнения):");
         Optional<Map.Entry<Integer, Client>> optionalClient = Optional.empty();
@@ -58,12 +57,12 @@ public class NewOrder {
                 }
             }
         }
-        Map.Entry<Integer, Client> client = optionalClient.get();
-        Map<Integer, Client> clientMap = new HashMap<>();
-        clientMap.put(client.getKey(), client.getValue());
-        if (!new RoomService().isClientLivedInRoom(room, client)) {
+        Map.Entry<Integer, Client> clientEntry = optionalClient.get();
+        int idClient = clientEntry.getKey();
+        Client client = clientEntry.getValue();
+        if (!new RoomService().isClientLivedInRoom(roomEntry, client)) {
             System.out.println("Клиент не проживает в этом номере!");
-            if (!new SettleClient().show(room, optionalClient.get())) {
+            if (!new SettleClient().show(roomEntry, optionalClient.get())) {
                 System.out.println("Регистрация заказа прервана!");
                 return;
             }
@@ -83,9 +82,8 @@ public class NewOrder {
                 }
             }
         }
-        Map.Entry<Integer, Service> service = optionalService.get();
-        Map<Integer, Service> serviceMap = new HashMap<>();
-        serviceMap.put(service.getKey(), service.getValue());
+        Map.Entry<Integer, Service> serviceEntry = optionalService.get();
+        int idService = serviceEntry.getKey();
 
         int numberOfServices = inputValue.entryValidInt("Количестов (обязательно для заполнения): ",
                 0, 9999);
@@ -96,6 +94,6 @@ public class NewOrder {
 
         String description = inputValue.entryString("Описание: ");
 
-        orders.add(new Order(roomMap, clientMap, serviceMap, numberOfServices, start, end, description));
+        orders.add(new Order(idRoom, idClient, idService, numberOfServices, start, end, description));
     }
 }

@@ -8,12 +8,12 @@ import java.util.Map;
 public class RoomService {
 
 
-    public boolean isClientLivedInRoom(Map.Entry<Integer, Room> room, Map.Entry<Integer, Client> client) {
+    public boolean isClientLivedInRoom(Map.Entry<Integer, Room> room, Client client) {
         return room.getValue()
                 .getClients()
                 .entrySet()
                 .stream()
-                .anyMatch(entry -> entry.getValue().equals(client.getValue()));
+                .anyMatch(entry -> entry.getValue().equals(client));
     }
 
     public boolean settleClientInRoom(Map.Entry<Integer, Room> roomEntry, Map.Entry<Integer, Client> clientEntry) {
@@ -26,8 +26,8 @@ public class RoomService {
         return false;
     }
 
-    public void evictClientInRoom(Map.Entry<Integer, Room> room, Map.Entry<Integer, Client> client) {
-        room.getValue().getClients().remove(client.getKey());
+    public void evictClientInRoom(Room room, int idClient) {
+        room.getClients().remove(idClient);
     }
 
 }

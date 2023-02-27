@@ -5,8 +5,8 @@ import by.itacademy.hw19.task1.entity.Service;
 import by.itacademy.hw19.task1.interfaces.IFindMenu;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.menu.MainMenu;
-import by.itacademy.hw19.task1.service.MapService;
 import by.itacademy.hw19.task1.menu.action.InputValue;
+import by.itacademy.hw19.task1.service.MapService;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

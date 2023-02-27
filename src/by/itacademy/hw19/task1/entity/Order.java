@@ -1,32 +1,28 @@
 package by.itacademy.hw19.task1.entity;
 
-import by.itacademy.hw19.task1.logger.ConsoleLogger;
-import by.itacademy.hw19.task1.service.MapService;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 public class Order implements Serializable {
-    private final Map<Integer, Room> room;
-    private final Map<Integer, Client> client;
-    private final Map<Integer, Service> service;
+    private final int idRoom;
+    private final int idClient;
+    private final int idService;
     private final int numberOfServices;
     private boolean status;
     private final LocalDateTime start;
     private final LocalDateTime end;
     private final String description;
 
-    public Order(Map<Integer, Room> room,
-                 Map<Integer, Client> client,
-                 Map<Integer, Service> service,
+    public Order(int idRoom,
+                 int idClient,
+                 int idService,
                  int numberOfServices,
                  LocalDateTime start,
                  LocalDateTime end, String description) {
-        this.room = room;
-        this.client = client;
-        this.service = service;
+        this.idRoom = idRoom;
+        this.idClient = idClient;
+        this.idService = idService;
         this.numberOfServices = numberOfServices;
         this.status = true;
         this.start = start;
@@ -34,16 +30,16 @@ public class Order implements Serializable {
         this.description = description;
     }
 
-    public Map<Integer, Room> getRoom() {
-        return room;
+    public int getIdRoom() {
+        return idRoom;
     }
 
-    public Map<Integer, Client> getClient() {
-        return client;
+    public int getIdClient() {
+        return idClient;
     }
 
-    public Map<Integer, Service> getService() {
-        return service;
+    public int getIdService() {
+        return idService;
     }
 
     public void setStatus(boolean status) {
@@ -58,10 +54,10 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return "Номер:\n" + new MapService<>(room, new ConsoleLogger()).getString() +
-               "\nПостоялец:\n" + new MapService<>(client, new ConsoleLogger()).getString() +
-               "Услуга:\n" + new MapService<>(service, new ConsoleLogger()).getString() +
-               "Количество услуг: " + numberOfServices +
+        return "id Номера: " + idRoom +
+               "\nid Постоялеца: " + idClient +
+               "\nid Услуги: " + idService +
+               "\nКоличество услуг: " + numberOfServices +
                "\nСтатус заказа: " + status +
                "\nДата начала: " + start.format(formatter) +
                "\nДата окончания: " + end.format(formatter) +
