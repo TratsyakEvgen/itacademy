@@ -1,4 +1,4 @@
-package by.itacademy.hw19.task1.util;
+package by.itacademy.hw19.task1.menu.action;
 
 import by.itacademy.hw19.task1.interfaces.Logger;
 
@@ -8,11 +8,11 @@ import java.time.format.DateTimeParseException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class InputMenuUtil {
+public class InputValue {
     private Scanner scanner = new Scanner(System.in);
     private final Logger logger;
 
-    public InputMenuUtil(Logger logger) {
+    public InputValue(Logger logger) {
         this.logger = logger;
     }
 
@@ -57,21 +57,6 @@ public class InputMenuUtil {
         return value;
     }
 
-    public boolean entryValidBoolean(String message) {
-        System.out.print(message);
-        boolean valid = false;
-        boolean value = false;
-        while (!valid) {
-            try {
-                value = scanner.nextBoolean();
-                valid = true;
-            } catch (NoSuchElementException | IllegalStateException e) {
-                logger.write("Ошибка! " + this.getClass() + "\n" + e.getMessage());
-                scanner = new Scanner(System.in);
-            }
-        }
-        return value;
-    }
 
     public LocalDateTime entryValidDate(String message) {
         System.out.print(message);
@@ -96,5 +81,14 @@ public class InputMenuUtil {
         return scanner.nextLine();
     }
 
+    public boolean entryBoolean(String message) {
+        switch (entryValidInt(message,1,2)){
+            case 1:
+                return true;
+            case 2:
+                return false;
+        }
+        return false;
+    }
 
 }

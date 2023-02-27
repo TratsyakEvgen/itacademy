@@ -6,12 +6,12 @@ import by.itacademy.hw19.task1.entity.Service;
 import by.itacademy.hw19.task1.interfaces.IFindMenu;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.menu.MainMenu;
-import by.itacademy.hw19.task1.menu.Select;
+import by.itacademy.hw19.task1.menu.action.SelectValue;
 import by.itacademy.hw19.task1.menu.client.actoin.FindClient;
 import by.itacademy.hw19.task1.menu.service.actoin.FindService;
 import by.itacademy.hw19.task1.repository.MapRepository;
 import by.itacademy.hw19.task1.service.MapService;
-import by.itacademy.hw19.task1.util.InputMenuUtil;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,13 +21,13 @@ import java.util.Scanner;
 public class FindRoom implements IFindMenu<Integer, Room> {
 
     private final Logger logger;
-    private final InputMenuUtil inputMenuUtil;
+    private final InputValue inputValue;
     private final MapRepository<Service> services;
     private final MapRepository<Client> clients;
 
     public FindRoom() {
         this.logger = MainMenu.getLogger();
-        this.inputMenuUtil = MainMenu.getInputMenuUtil();
+        this.inputValue = MainMenu.getInputValue();
         this.services = MainMenu.getServices();
         this.clients = MainMenu.getClients();
     }
@@ -44,19 +44,19 @@ public class FindRoom implements IFindMenu<Integer, Room> {
                            "5. Поиск по описанию\n" +
                            "0. Вернуться назад");
 
-        switch (inputMenuUtil.entryValidInt("Выбирете действие: ", 0, 5)) {
+        switch (inputValue.entryValidInt("Выбирете действие: ", 0, 5)) {
             case 1:
                 System.out.print("Номер: ");
                 rooms = mapService.filterByFieldValue("number", scanner.nextLine());
                 break;
             case 2:
                 rooms = mapService.filterByFieldValue("capacity",
-                        inputMenuUtil.entryValidInt("Количество мест: ", 0, 9999));
+                        inputValue.entryValidInt("Количество мест: ", 0, 9999));
                 break;
             case 3:
                 System.out.println("Постоялец: ");
                 Optional<Map.Entry<Integer, Client>> client =
-                        new Select<Integer, Client>().show(clients.read(), new FindClient());
+                        new SelectValue<Integer, Client>().show(clients.read(), new FindClient());
                 if (client.isPresent()) {
                     rooms = mapService.filterByFieldValue("clients", client.get());
                 }
@@ -64,7 +64,7 @@ public class FindRoom implements IFindMenu<Integer, Room> {
             case 4:
                 System.out.println("Сервис: ");
                 Optional<Map.Entry<Integer, Service>> service =
-                        new Select<Integer, Service>().show(services.read(), new FindService());
+                        new SelectValue<Integer, Service>().show(services.read(), new FindService());
                 if (service.isPresent()) {
                     rooms = mapService.filterByFieldValue("services", service.get());
                 }

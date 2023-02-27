@@ -47,7 +47,11 @@ public class MapService<K, V> {
 
     public String getString() {
         StringBuilder stringBuilder = new StringBuilder();
-        map.forEach((key, value) -> stringBuilder.append("id:").append(key).append(" ").append(value).append("\n"));
+        map.forEach((key, value) -> stringBuilder
+                .append("id: ")
+                .append(key)
+                .append("\n")
+                .append(value));
         return String.valueOf(stringBuilder);
     }
 

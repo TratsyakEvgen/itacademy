@@ -50,6 +50,6 @@ public class Client implements Serializable {
                "\nНомер паспорта: " + identification +
                "\nВозраст: " + age +
                "\nСтрана: " + country +
-               "\nНомер телефона: " + phoneNumber;
+               "\nНомер телефона: " + phoneNumber + "\n";
     }
 }

@@ -3,15 +3,15 @@ package by.itacademy.hw19.task1.menu.client.actoin;
 import by.itacademy.hw19.task1.entity.Client;
 import by.itacademy.hw19.task1.menu.MainMenu;
 import by.itacademy.hw19.task1.repository.MapRepository;
-import by.itacademy.hw19.task1.util.InputMenuUtil;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 
 public class EditClient {
 
-    private final InputMenuUtil inputMenuUtil;
+    private final InputValue inputValue;
     private final MapRepository<Client> clients;
 
     public EditClient() {
-        this.inputMenuUtil = MainMenu.getInputMenuUtil();
+        this.inputValue = MainMenu.getInputValue();
         this.clients = MainMenu.getClients();
     }
 
@@ -25,24 +25,24 @@ public class EditClient {
                            "7. Сохранить изменения\n" +
                            "0. Вернуться назад");
 
-        switch (inputMenuUtil.entryValidInt("Выбирете действие: ", 0, 7)) {
+        switch (inputValue.entryValidInt("Выбирете действие: ", 0, 7)) {
             case 1:
-                client.setFirstName(inputMenuUtil.entryString("Имя: "));
+                client.setFirstName(inputValue.entryString("Имя: "));
                 break;
             case 2:
-                client.setLastName(inputMenuUtil.entryString("Фамилия: "));
+                client.setLastName(inputValue.entryString("Фамилия: "));
                 break;
             case 3:
-                client.setIdentification(inputMenuUtil.entryString("Номер паспорта: "));
+                client.setIdentification(inputValue.entryString("Номер паспорта: "));
                 break;
             case 4:
-                client.setAge(inputMenuUtil.entryValidInt("Возраст: ", 0, 9999));
+                client.setAge(inputValue.entryValidInt("Возраст: ", 0, 9999));
                 break;
             case 5:
-                client.setCountry(inputMenuUtil.entryString("Страна: "));
+                client.setCountry(inputValue.entryString("Страна: "));
                 break;
             case 6:
-                client.setPhoneNumber(inputMenuUtil.entryString("Номер телефона: "));
+                client.setPhoneNumber(inputValue.entryString("Номер телефона: "));
                 break;
             case 7:
                 System.out.println("Информация сохранена");

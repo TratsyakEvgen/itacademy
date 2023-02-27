@@ -6,7 +6,7 @@ import by.itacademy.hw19.task1.interfaces.IFindMenu;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.menu.MainMenu;
 import by.itacademy.hw19.task1.service.MapService;
-import by.itacademy.hw19.task1.util.InputMenuUtil;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -15,11 +15,11 @@ import java.util.Scanner;
 
 public class FindService implements IFindMenu<Integer, Service> {
     private final Logger logger;
-    private final InputMenuUtil inputMenuUtil;
+    private final InputValue inputValue;
 
     public FindService() {
         this.logger = MainMenu.getLogger();
-        this.inputMenuUtil = MainMenu.getInputMenuUtil();
+        this.inputValue = MainMenu.getInputValue();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class FindService implements IFindMenu<Integer, Service> {
                            "3. Поиск по описанию\n" +
                            "0. Вернуться назад");
 
-        switch (inputMenuUtil.entryValidInt("Выбирете действие: ", 0, 3)) {
+        switch (inputValue.entryValidInt("Выбирете действие: ", 0, 3)) {
             case 1:
                 System.out.print("Название: ");
                 services = mapService.filterByFieldValue("name", scanner.nextLine());

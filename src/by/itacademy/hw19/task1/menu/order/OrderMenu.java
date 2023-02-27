@@ -5,7 +5,7 @@ import by.itacademy.hw19.task1.entity.Order;
 import by.itacademy.hw19.task1.entity.Room;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.menu.MainMenu;
-import by.itacademy.hw19.task1.menu.Select;
+import by.itacademy.hw19.task1.menu.action.SelectValue;
 import by.itacademy.hw19.task1.menu.client.actoin.FindClient;
 import by.itacademy.hw19.task1.menu.order.action.FindOrder;
 import by.itacademy.hw19.task1.menu.order.action.NewOrder;
@@ -13,7 +13,7 @@ import by.itacademy.hw19.task1.menu.room.actoin.FindRoom;
 import by.itacademy.hw19.task1.repository.MapRepository;
 import by.itacademy.hw19.task1.service.MapService;
 import by.itacademy.hw19.task1.service.OrderService;
-import by.itacademy.hw19.task1.util.InputMenuUtil;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -22,7 +22,7 @@ import java.util.Optional;
 public class OrderMenu {
 
     private final Logger logger;
-    private final InputMenuUtil inputMenuUtil;
+    private final InputValue inputValue;
     private final MapRepository<Order> orders;
     private final MapRepository<Room> rooms;
     private final MapRepository<Client> clients;
@@ -30,7 +30,7 @@ public class OrderMenu {
     public OrderMenu() {
         this.logger = MainMenu.getLogger();
         this.rooms = MainMenu.getRooms();
-        this.inputMenuUtil = MainMenu.getInputMenuUtil();
+        this.inputValue = MainMenu.getInputValue();
         this.orders = MainMenu.getOrders();
         this.clients = MainMenu.getClients();
     }
@@ -42,7 +42,7 @@ public class OrderMenu {
                            "4. Закрыть все заказы по комнате\n" +
                            "5. Закрыть все заказы по постоялцу\n" +
                            "0. Вернуться назад");
-        switch (inputMenuUtil.entryValidInt("Выбирете действие: ", 0, 5)) {
+        switch (inputValue.entryValidInt("Выбирете действие: ", 0, 5)) {
             case 1:
                 new FindOrder().show(orders.read());
                 show();
@@ -52,7 +52,7 @@ public class OrderMenu {
                 show();
                 break;
             case 3:
-                Optional<Map.Entry<Integer, Order>> orderEntry = new Select<Integer, Order>()
+                Optional<Map.Entry<Integer, Order>> orderEntry = new SelectValue<Integer, Order>()
                         .show(orders.read(), new FindOrder());
                 if (orderEntry.isPresent()) {
                     BigDecimal price = new OrderService(orders, rooms).closeOrder(orderEntry.get());
@@ -60,7 +60,7 @@ public class OrderMenu {
                 }
                 break;
             case 4:
-                Optional<Map.Entry<Integer, Room>> roomEntry = new Select<Integer, Room>()
+                Optional<Map.Entry<Integer, Room>> roomEntry = new SelectValue<Integer, Room>()
                         .show(rooms.read(), new FindRoom());
                 if (roomEntry.isPresent()) {
                     Map<Integer, Order> ClosedOrders = new MapService<>(orders.read(), logger)
@@ -70,7 +70,7 @@ public class OrderMenu {
                 }
                 break;
             case 5:
-                Optional<Map.Entry<Integer, Client>> clientEntry = new Select<Integer, Client>()
+                Optional<Map.Entry<Integer, Client>> clientEntry = new SelectValue<Integer, Client>()
                         .show(clients.read(), new FindClient());
                 if (clientEntry.isPresent()) {
                     Map<Integer, Order> ClosedOrders = new MapService<>(orders.read(), logger)

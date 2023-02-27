@@ -5,7 +5,7 @@ import by.itacademy.hw19.task1.interfaces.IFindMenu;
 import by.itacademy.hw19.task1.interfaces.Logger;
 import by.itacademy.hw19.task1.menu.MainMenu;
 import by.itacademy.hw19.task1.service.MapService;
-import by.itacademy.hw19.task1.util.InputMenuUtil;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,11 +14,11 @@ import java.util.Scanner;
 public class FindClient implements IFindMenu<Integer, Client> {
 
     private final Logger logger;
-    private final InputMenuUtil inputMenuUtil;
+    private final InputValue inputValue;
 
     public FindClient() {
         this.logger = MainMenu.getLogger();
-        this.inputMenuUtil = MainMenu.getInputMenuUtil();
+        this.inputValue = MainMenu.getInputValue();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class FindClient implements IFindMenu<Integer, Client> {
                            "6. Поиск по номеру телефона\n" +
                            "0. Вернуться назад");
 
-        switch (inputMenuUtil.entryValidInt("Выбирете действие: ", 0, 7)) {
+        switch (inputValue.entryValidInt("Выбирете действие: ", 0, 7)) {
             case 1:
                 System.out.print("Имя: ");
                 clients = mapService.filterByFieldValue("firstName", scanner.nextLine());
@@ -50,7 +50,7 @@ public class FindClient implements IFindMenu<Integer, Client> {
                 break;
             case 4:
                 clients = mapService.filterByFieldValue("age",
-                        inputMenuUtil.entryValidInt("Возраст: ", 0, 9999));
+                        inputValue.entryValidInt("Возраст: ", 0, 9999));
                 break;
             case 5:
                 System.out.print("Страна: ");
@@ -58,7 +58,7 @@ public class FindClient implements IFindMenu<Integer, Client> {
                 break;
             case 6:
                 clients = mapService.filterByFieldValue("phoneNumber",
-                        inputMenuUtil.entryValidString("Номер телефона: ", "\\+{1}[\\d]{12}"));
+                        inputValue.entryValidString("Номер телефона: ", "\\+{1}[\\d]{12}"));
                 break;
             case 0:
                 return;

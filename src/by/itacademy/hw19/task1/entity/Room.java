@@ -10,12 +10,11 @@ import java.util.Map;
 public class Room implements Serializable {
     private String number;
     private int capacity;
-    private Map<Integer, Client> clients;
+    private Map<Integer, Client> clients = new HashMap<>();
     private Map<Integer, Service> services;
     private String description;
 
     public Room(String number, int capacity, Map<Integer, Service> services, String description) {
-        this.clients = new HashMap<>();
         this.number = number;
         this.capacity = capacity;
         this.services = services;
@@ -51,8 +50,8 @@ public class Room implements Serializable {
 
     @Override
     public String toString() {
-        return "Номер: " + number +
-               "\nКоличество мест номер: " + capacity +
+        return "Номер : " + number +
+               "\nКоличество мест в номере: " + capacity +
                "\nПостояльцы номера:\n" + new MapService<>(clients, new ConsoleLogger()).getString() +
                "Предоставляемые услуги номера:\n" + new MapService<>(services, new ConsoleLogger()).getString() +
                "Описание номера: " + description;

@@ -8,18 +8,18 @@ import by.itacademy.hw19.task1.menu.service.actoin.AddService;
 import by.itacademy.hw19.task1.menu.service.actoin.DeleteService;
 import by.itacademy.hw19.task1.repository.MapRepository;
 import by.itacademy.hw19.task1.service.MapService;
-import by.itacademy.hw19.task1.util.InputMenuUtil;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 
 public class EditRoom {
 
     private final Logger logger;
-    private final InputMenuUtil inputMenuUtil;
+    private final InputValue inputValue;
     private final MapRepository<Room> rooms;
     private final MapRepository<Service> services;
 
     public EditRoom() {
         this.logger = MainMenu.getLogger();
-        this.inputMenuUtil = MainMenu.getInputMenuUtil();
+        this.inputValue = MainMenu.getInputValue();
         this.rooms = MainMenu.getRooms();
         this.services = MainMenu.getServices();
     }
@@ -33,12 +33,12 @@ public class EditRoom {
                            "6. Сохранить изменения\n" +
                            "0. Вернуться назад");
 
-        switch (inputMenuUtil.entryValidInt("Выбирете действие: ", 0, 6)) {
+        switch (inputValue.entryValidInt("Выбирете действие: ", 0, 6)) {
             case 1:
-                room.setNumber(inputMenuUtil.entryString("Номер: "));
+                room.setNumber(inputValue.entryString("Номер: "));
                 break;
             case 2:
-                room.setCapacity(inputMenuUtil.entryValidInt("Количество мест: ", 0, 9999));
+                room.setCapacity(inputValue.entryValidInt("Количество мест: ", 0, 9999));
                 break;
             case 3:
                 System.out.println("Список услуг номера:");
@@ -51,7 +51,7 @@ public class EditRoom {
                 new DeleteService().show(room.getServices());
                 break;
             case 5:
-                room.setDescription(inputMenuUtil.entryString("Описание: "));
+                room.setDescription(inputValue.entryString("Описание: "));
                 break;
             case 6:
                 System.out.println("Информация сохранена");

@@ -1,22 +1,26 @@
 package by.itacademy.hw19.task1.entity;
 
+import by.itacademy.hw19.task1.logger.ConsoleLogger;
+import by.itacademy.hw19.task1.service.MapService;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-public class Order {
-    private final Map.Entry<Integer, Room> room;
-    private final Map.Entry<Integer, Client> client;
-    private final Map.Entry<Integer, Service> service;
+public class Order implements Serializable {
+    private final Map<Integer, Room> room;
+    private final Map<Integer, Client> client;
+    private final Map<Integer, Service> service;
     private final int numberOfServices;
     private boolean status;
     private final LocalDateTime start;
     private final LocalDateTime end;
     private final String description;
 
-    public Order(Map.Entry<Integer, Room> room,
-                 Map.Entry<Integer, Client> client,
-                 Map.Entry<Integer, Service> service,
+    public Order(Map<Integer, Room> room,
+                 Map<Integer, Client> client,
+                 Map<Integer, Service> service,
                  int numberOfServices,
                  LocalDateTime start,
                  LocalDateTime end, String description) {
@@ -30,15 +34,15 @@ public class Order {
         this.description = description;
     }
 
-    public Map.Entry<Integer, Room> getRoom() {
+    public Map<Integer, Room> getRoom() {
         return room;
     }
 
-    public Map.Entry<Integer, Client> getClient() {
+    public Map<Integer, Client> getClient() {
         return client;
     }
 
-    public Map.Entry<Integer, Service> getService() {
+    public Map<Integer, Service> getService() {
         return service;
     }
 
@@ -54,13 +58,13 @@ public class Order {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return "Номер: " + room +
-               "\nПостоялец:\n" + client +
-               "\nУслуга:\n" + service +
-               "\nКоличество услуг: " + numberOfServices +
+        return "Номер:\n" + new MapService<>(room, new ConsoleLogger()).getString() +
+               "\nПостоялец:\n" + new MapService<>(client, new ConsoleLogger()).getString() +
+               "Услуга:\n" + new MapService<>(service, new ConsoleLogger()).getString() +
+               "Количество услуг: " + numberOfServices +
                "\nСтатус заказа: " + status +
                "\nДата начала: " + start.format(formatter) +
                "\nДата окончания: " + end.format(formatter) +
-               "\nОписание заказа: " + description;
+               "\nОписание заказа: " + description + "\n\n";
     }
 }

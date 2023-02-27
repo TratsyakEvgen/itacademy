@@ -18,20 +18,33 @@ public class OrderService {
 
     public BigDecimal closeOrder(Map.Entry<Integer, Order> orderEntry) {
         Order order = orderEntry.getValue();
-        Map.Entry<Integer, Room> room = order.getRoom();
+        int key = orderEntry.getKey();
+        Map<Integer, Room> room = order.getRoom();
         order.setStatus(false);
         orders.update(orderEntry.getKey(), order);
-        new RoomService().evictClientInRoom(order.getRoom(), order.getClient());
-        rooms.update(room.getKey(), room.getValue());
-        return order.getService().getValue().getPrice().multiply(BigDecimal.valueOf(order.getNumberOfServices()));
+        new RoomService().evictClientInRoom(order.getRoom().entrySet().stream().findFirst().get(),
+                order.getClient().entrySet().stream().findFirst().get());
+        rooms.update(key, room.get(key));
+        return order
+                .getService()
+                .entrySet()
+                .stream()
+                .findFirst()
+                .get()
+                .getValue().getPrice().multiply(BigDecimal.valueOf(order.getNumberOfServices()));
     }
 
     public BigDecimal closeAllOrder(Map<Integer, Order> closedOrders) {
+        closedOrders.entrySet().forEach(this::closeOrder);
         return closedOrders
                 .values()
                 .stream()
                 .map(order -> order
                         .getService()
+                        .entrySet()
+                        .stream()
+                        .findFirst()
+                        .get()
                         .getValue()
                         .getPrice()
                         .multiply(BigDecimal.valueOf(order.getNumberOfServices())))

@@ -11,26 +11,26 @@ import by.itacademy.hw19.task1.menu.order.OrderMenu;
 import by.itacademy.hw19.task1.menu.room.RoomMenu;
 import by.itacademy.hw19.task1.menu.service.ServiceMenu;
 import by.itacademy.hw19.task1.repository.MapRepository;
-import by.itacademy.hw19.task1.util.InputMenuUtil;
+import by.itacademy.hw19.task1.menu.action.InputValue;
 
 
 public class MainMenu {
 
     private static Logger logger;
-    private static InputMenuUtil inputMenuUtil;
+    private static InputValue inputValue;
     private static MapRepository<Client> clients;
     private static MapRepository<Service> services;
     private static MapRepository<Room> rooms;
     private static MapRepository<Order> orders;
 
     public MainMenu(Logger logger,
-                    InputMenuUtil inputMenuUtil,
+                    InputValue inputValue,
                     MapRepository<Client> clients,
                     MapRepository<Service> services,
                     MapRepository<Room> rooms,
                     MapRepository<Order> orders) {
         MainMenu.logger = logger;
-        MainMenu.inputMenuUtil = inputMenuUtil;
+        MainMenu.inputValue = inputValue;
         MainMenu.clients = clients;
         MainMenu.services = services;
         MainMenu.rooms = rooms;
@@ -41,7 +41,7 @@ public class MainMenu {
     public static void main(String[] args) {
         Logger logger = new ConsoleLogger();
         MainMenu mainMenu = new MainMenu(logger,
-                new InputMenuUtil(logger),
+                new InputValue(logger),
                 new MapRepository<>("src/by/itacademy/hw19/task1/data/clients.data", logger),
                 new MapRepository<>("src/by/itacademy/hw19/task1/data/services.data", logger),
                 new MapRepository<>("src/by/itacademy/hw19/task1/data/rooms.data", logger),
@@ -56,7 +56,7 @@ public class MainMenu {
                            "3. Сервисы\n" +
                            "4. Заказы\n" +
                            "0. Выход");
-        switch (inputMenuUtil.entryValidInt("Выбирете действие: ", 0, 4)) {
+        switch (inputValue.entryValidInt("Выбирете действие: ", 0, 4)) {
             case 1:
                 new ClientMenu().show();
                 show();
@@ -82,8 +82,8 @@ public class MainMenu {
         return logger;
     }
 
-    public static InputMenuUtil getInputMenuUtil() {
-        return inputMenuUtil;
+    public static InputValue getInputValue() {
+        return inputValue;
     }
 
     public static MapRepository<Client> getClients() {
