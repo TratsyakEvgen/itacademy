@@ -13,7 +13,7 @@ public class TowerTank implements IProductPart {
     @Override
     public String toString() {
         return "TowerTank{" +
-                "someParam='" + someParam + '\'' +
-                '}';
+               "someParam='" + someParam + '\'' +
+               '}';
     }
 }

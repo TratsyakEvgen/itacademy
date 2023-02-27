@@ -2,43 +2,41 @@ package by.itacademy.hw18.task1.entity.assembly.line;
 
 
 import by.itacademy.hw18.task1.interfaces.IAssemblyLine;
+import by.itacademy.hw18.task1.interfaces.ILineStep;
 import by.itacademy.hw18.task1.interfaces.IProduct;
 import by.itacademy.hw18.task1.interfaces.IProductPart;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Map;
 
 
 public class AssemblyLine implements IAssemblyLine {
-    private final Map<Class<?>, Map<Class<?>, Object>> mapInstructionsOfParts;
-    private final Map<Class<?>, Method> mapAssemblyOfParts;
+    private final Map<Integer, ILineStep> instruction;
 
-    public AssemblyLine(Map<Class<?>, Map<Class<?>, Object>> mapInstructionsOfParts, Map<Class<?>, Method> mapAssemblyOfParts) {
-        this.mapInstructionsOfParts = mapInstructionsOfParts;
-        this.mapAssemblyOfParts = mapAssemblyOfParts;
+    public AssemblyLine(Map<Integer, ILineStep> instruction) {
+        this.instruction = instruction;
     }
 
     @Override
     public IProduct assemblyProduct(IProduct product) {
-        System.out.println("Поступил запрос на сборку: " + product.getClass());
-        mapInstructionsOfParts.forEach((key, mapConstruction) -> {
-            System.out.println("Читаем инструкцию по сборке частей и запрашиваем создание: " + key);
-            IProductPart productPart = new LineStep(key,
-                    mapConstruction.keySet().toArray(new Class[0]),
-                    mapConstruction.values().toArray(new Object[0]))
-                    .buildProductPart();
-            System.out.println("Получаем готовую часть: " + productPart);
-            System.out.println("Читаем инструкцию по сборке продукта...");
-            Method method = mapAssemblyOfParts.get(productPart.getClass());
-            method.setAccessible(true);
-            try {
-                System.out.println("Устанавливаем " + productPart + " согласно инструкции через метод: " + method);
-                method.invoke(product, productPart);
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        System.out.println("Читаем инструкцию и запрашиваем 1-ю детальку");
+        IProductPart firstPart = instruction.get(1).buildProductPart();
+        System.out.println("Получаем 1-ю детальку " + firstPart);
+        System.out.println("Устанавливаем 1-ю детальку на изделие");
+        product.installFirstPart(firstPart);
+
+        System.out.println("Читаем инструкцию и запрашиваем 2-ю детальку");
+        IProductPart secondPart = instruction.get(2).buildProductPart();
+        System.out.println("Получаем 2-ю детальку " + secondPart);
+        System.out.println("Устанавливаем 2-ю детальку на изделие");
+        product.installSecondPart(secondPart);
+
+        System.out.println("Читаем инструкцию и запрашиваем 1-ю детальку");
+        IProductPart thirdPart = instruction.get(3).buildProductPart();
+        System.out.println("Получаем 3-ю детальку " + thirdPart);
+        System.out.println("Устанавливаем 3-ю детальку на изделие");
+        product.installThirdPart(thirdPart);
+
+        System.out.println("Получаем изделее: " + product);
         return product;
     }
 }

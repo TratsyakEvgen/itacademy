@@ -29,9 +29,9 @@ public class Tank implements IProduct {
     @Override
     public String toString() {
         return "Tank{" +
-                "firstPart=" + firstPart +
-                ", secondPart=" + secondPart +
-                ", thirdPart=" + thirdPart +
-                '}';
+               "firstPart=" + firstPart +
+               ", secondPart=" + secondPart +
+               ", thirdPart=" + thirdPart +
+               '}';
     }
 }
