@@ -1,7 +1,8 @@
-package by.itacademy.hw11.repository;
+package by.itacademy.hw1516.task4.hw11.repository;
 
-import by.itacademy.hw11.entity.User;
+import by.itacademy.hw1516.task4.hw11.entity.User;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,8 @@ public class UserRepository {
     }
 
     private void initUsers() {
-        users.add(new User("Login_1", "password_1"));
-        users.add(new User("Login_2", "password_2"));
+        LocalDateTime registrationDate = LocalDateTime.now();
+        users.add(new User("Login_1", "password_1", registrationDate));
+        users.add(new User("Login_2", "password_2", registrationDate));
     }
 }

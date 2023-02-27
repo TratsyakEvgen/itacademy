@@ -1,4 +1,4 @@
-package by.itacademy.hw11.service.exception;
+package by.itacademy.hw1516.task4.hw11.service.exception;
 
 public class WrongPasswordException extends RuntimeException {
     private final String message;

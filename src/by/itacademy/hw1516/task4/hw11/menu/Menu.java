@@ -1,7 +1,7 @@
-package by.itacademy.hw11.menu;
+package by.itacademy.hw1516.task4.hw11.menu;
 
-import by.itacademy.hw11.menu.action.MenuAction;
-import by.itacademy.hw11.menu.action.SelectAction;
+import by.itacademy.hw1516.task4.hw11.menu.action.MenuAction;
+import by.itacademy.hw1516.task4.hw11.menu.action.SelectAction;
 
 public class Menu {
 
@@ -15,7 +15,8 @@ public class Menu {
         System.out.println("Выбирите действие:\n" +
                 "1 - Авторизация\n" +
                 "2 - Регистарация\n" +
-                "3 - Выход");
+                "3 - Просмотр пользователей\n" +
+                "4 - Выход");
 
         boolean isExit = false;
 
@@ -30,6 +31,10 @@ public class Menu {
                     showMenu();
                     break;
                 case 3:
+                    menuAction.getUsersOfDateRegistration();
+                    showMenu();
+                    break;
+                case 4:
                     isExit = true;
                     break;
             }
